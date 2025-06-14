@@ -5,8 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>OKLM - Assistant Vocal IA</title>
-  <!-- Polices modernes -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --color-bg: #f8f9fb;
@@ -57,7 +55,7 @@
     .navbar .container {
       display: flex;
       align-items: center;
-      justify-content: space-evenly;
+      justify-content: space-between;
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 32px;
@@ -669,53 +667,69 @@
   <footer>
     &copy; 2025 OKLM • <a href="mailto:tcgreata@gmail.com">tcgreata@gmail.com</a>
   </footer>
-  <!-- Twilio Voice SDK -->
-  <script src="https://sdk.twilio.com/js/client/v1.13/twilio.min.js"></script>
   <script>
-    const callButton = document.getElementById("callButton");
-    const hangupButton = document.getElementById("hangupButton");
-    const voiceCircle = document.getElementById("voiceCircle");
-    let device;
-    async function getTwilioToken() {
-      const res = await fetch("/api/token"); // Doit être créé côté serveur
-      const data = await res.json();
-      return data.token;
-    }
-    async function setupTwilio() {
-      const token = await getTwilioToken();
-      Twilio.Device.setup(token, { debug: false });
-      Twilio.Device.ready(() => { console.log("Twilio Device ready"); });
-      Twilio.Device.connect(() => {
-        voiceCircle.classList.add("active");
-        hangupButton.disabled = false;
-      });
-      Twilio.Device.disconnect(() => {
-        voiceCircle.classList.remove("active");
-        hangupButton.disabled = true;
-      });
-    }
-    callButton.addEventListener("click", () => {
-      Twilio.Device.connect();
-      callButton.disabled = true;
-    });
-    hangupButton.addEventListener("click", () => {
-      Twilio.Device.disconnectAll();
-      callButton.disabled = false;
-    });
-    setupTwilio();
     // Menu hamburger mobile
     const menuToggle = document.querySelector('.menu-toggle');
     const navUl = document.querySelector('.navbar ul');
     menuToggle.addEventListener('click', () => {
       navUl.classList.toggle('open');
     });
-    // Fermer le menu au clic sur un lien (mobile UX)
     document.querySelectorAll('.navbar ul a').forEach(link => {
       link.addEventListener('click', () => {
         navUl.classList.remove('open');
       });
     });
   </script>
+  <script>
+  const callButton = document.getElementById("callButton");
+  const hangupButton = document.getElementById("hangupButton");
+  const voiceCircle = document.getElementById("voiceCircle");
+
+  callButton.addEventListener("click", () => {
+    if (!vapiInstance) return console.error("Widget Vapi non chargé");
+
+    vapiInstance.start("12f7fe20-3241-4dc5-9de1-b980e7f6cb0d");
+    callButton.disabled = true;
+    hangupButton.disabled = false;
+    voiceCircle.classList.add("active");
+  });
+
+  hangupButton.addEventListener("click", () => {
+    if (!vapiInstance) return;
+
+    vapiInstance.stop();
+    callButton.disabled = false;
+    hangupButton.disabled = true;
+    voiceCircle.classList.remove("active");
+  });
+
+  // Gestes d'état si besoin
+  // vapiInstance.on('call-start', ...) ; vapiInstance.on('call-end', ...)
+</script>
+
+  <script>
+  var vapiInstance = null;
+  const assistant = "12f7fe20-3241-4dc5-9de1-b980e7f6cb0d";      
+  const apiKey = "f67d37f8-109f-4900-85ed-9aaf231a7135";       
+  const buttonConfig = {};                   
+
+  (function (d, t) {
+    var g = document.createElement(t),
+        s = d.getElementsByTagName(t)[0];
+    g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+    g.defer = true;
+    g.async = true;
+    s.parentNode.insertBefore(g, s);
+    g.onload = function () {
+      vapiInstance = window.vapiSDK.run({
+        apiKey: apiKey,      // obligatoire
+        assistant: assistant,// obligatoire
+        config: buttonConfig // optionnel : styles et textes
+      });
+    };
+  })(document, "script");
+</script>
+
 </body>
 
 </html>
