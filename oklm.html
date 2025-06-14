@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>OKLM - Assistant Vocal IA</title>
+  <!-- Polices modernes -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #f8f9fb;
+      --color-bg-dark: #2b0a4d;
+      --color-gradient: linear-gradient(120deg, #2b0a4d 0%, #ff0004 100%);
+      --color-primary: #ff0004;
+      --color-primary-dark: #c20000;
+      --color-text: #2b0a4d;
+      --color-text-light: #fff;
+      --color-card: #fff;
+      --color-footer: #181a1b;
+      --color-border: #ececec;
+      --color-shadow: rgba(43, 10, 77, 0.13);
+      --color-shadow-strong: #2b0a4d22;
+      --radius: 24px;
+      --font-main: 'Inter', Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--color-bg);
+      color: var(--color-text);
+      min-height: 100vh;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar sticky */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(43, 10, 77, 0.85);
+      backdrop-filter: blur(0.5px);
+      box-shadow: 0 4px 24px #0002;
+      padding: 10px 0;
+      transition: background 0.3s;
+    }
+
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .logo {
+      height: 60px;
+    }
+
+    .navbar ul {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .navbar a {
+      color: #fff;
+      font-family: var(--font-main);
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s;
+      padding: 8px 18px;
+      border-radius: 18px;
+    }
+
+    .navbar a:hover,
+    .navbar a:focus {
+      color: var(--color-primary);
+      background: #fff1;
+      outline: none;
+    }
+
+    /* Hero section */
+    .hero.gradient-bg {
+      background: var(--color-gradient);
+      color: #fff;
+      padding: 130px 0 40px 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-logo {
+      width: 120px;
+      margin-bottom: 32px;
+      filter: drop-shadow(0 2px 12px #ff0004cc);
+    }
+
+    .text-hero {
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
+      text-shadow: 0 2px 16px #ff00044d;
+    }
+
+    .hero-sub {
+      font-size: 1.3rem;
+      margin-bottom: 36px;
+      color: #fff;
+      opacity: 0.85;
+      font-weight: 400;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 18px 48px;
+      border-radius: 32px;
+      background: var(--color-primary);
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 700;
+      box-shadow: 0 4px 24px #ff000433;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus {
+      background: #fff;
+      color: var(--color-primary);
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 8px 32px #ff000444;
+      outline: none;
+    }
+
+    /* Features section */
+    .features-section {
+      background: #fff;
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--color-bg-dark);
+      margin-bottom: 22px;
+      text-align: center;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 36px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 32px var(--color-shadow-strong);
+      padding: 36px 28px;
+      transition: box-shadow 0.2s, transform 0.2s;
+      border: none;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .card h3 {
+      color: var(--color-primary);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #444;
+      font-size: 1.08rem;
+    }
+
+    .card:hover,
+    .card:focus {
+      box-shadow: 0 8px 48px #ff000422;
+      transform: translateY(-6px) scale(1.03);
+      outline: none;
+    }
+
+    /* Demo section */
+    .demo-section {
+      background: #fff;
+      padding: 80px 0;
+    }
+
+    .demo {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 32px var(--color-shadow-strong);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .voice-circle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: radial-gradient(circle, black 60%, #2b0a4d 100%);
+      box-shadow: 0 0 40px var(--color-primary);
+      transition: all 0.3s ease;
+    }
+
+    .logo-demo {
+      width: 70px;
+      height: 37px;
+      padding: 0 5px 5px 0;
+    }
+
+    .voice-circle.active {
+      animation: pulse 1.2s infinite cubic-bezier(.4, 0, .2, 1);
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px var(--color-primary);
+      }
+
+      50% {
+        transform: scale(1.15);
+        box-shadow: 0 0 32px var(--color-primary);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px var(--color-primary);
+      }
+    }
+
+    #callButton,
+    #hangupButton {
+      font-family: var(--font-main);
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 14px 36px;
+      border-radius: 32px;
+      border: none;
+      background: var(--color-primary);
+      color: #fff;
+      margin: 0 8px;
+      box-shadow: 0 2px 8px #ff000422;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, filter 0.2s;
+    }
+
+    #callButton:hover,
+    #hangupButton:hover,
+    #callButton:focus,
+    #hangupButton:focus {
+      background: #fff;
+      color: var(--color-primary);
+      filter: brightness(1.08);
+      box-shadow: 0 4px 16px #ff000433;
+      outline: none;
+    }
+
+    /* Contact section */
+    .contact-section {
+      background: #fff;
+      padding: 80px 0;
+    }
+
+    form {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 32px var(--color-shadow-strong);
+      border: none;
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    form label {
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 4px;
+    }
+
+    input,
+    textarea {
+      font-family: var(--font-main);
+      background: #f4f4f7;
+      color: var(--color-text);
+      border: 1.5px solid var(--color-border);
+      padding: 14px;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      transition: border 0.2s;
+    }
+
+    input:focus,
+    textarea:focus {
+      border: 1.5px solid var(--color-primary);
+      outline: none;
+    }
+
+    button[type="submit"] {
+      align-self: flex-end;
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 14px 36px;
+      border-radius: 32px;
+      border: none;
+      background: var(--color-primary);
+      color: #fff;
+      box-shadow: 0 2px 8px #ff000422;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, filter 0.2s;
+    }
+
+    button[type="submit"]:hover,
+    button[type="submit"]:focus {
+      background: #fff;
+      color: var(--color-primary);
+      filter: brightness(1.08);
+      box-shadow: 0 4px 16px #ff000433;
+      outline: none;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--color-footer);
+      color: #fff;
+      text-align: center;
+      padding: 32px 0 24px 0;
+      font-size: 1rem;
+      border-top: none;
+      margin-top: 0;
+    }
+
+    footer a {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    footer a:hover,
+    footer a:focus {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* Animations */
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(32px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .animate-fade-in {
+      animation: fade-in 1s cubic-bezier(.4, 0, .2, 1) both;
+    }
+
+    @keyframes slide-up {
+      from {
+        opacity: 0;
+        transform: translateY(48px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .animate-slide-up {
+      animation: slide-up 1.2s cubic-bezier(.4, 0, .2, 1) both;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .navbar .container {
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .text-hero {
+        font-size: 2rem;
+      }
+
+      .section-title {
+        font-size: 1.3rem;
+      }
+
+      .hero.gradient-bg {
+        padding: 170px 0 30px 0;
+      }
+
+      .features-section,
+      .demo-section,
+      .contact-section {
+        padding: 40px 0;
+      }
+
+      .card {
+        font-size: 1rem;
+      }
+
+      .navbar ul {
+        gap: 12px;
+      }
+
+      .btn-primary,
+      #callButton,
+      #hangupButton,
+      button[type="submit"] {
+        padding: 12px 18px;
+        font-size: 1rem;
+      }
+
+      form {
+        padding: 16px 4px;
+      }
+
+      .demo {
+        gap: 24px;
+        padding: 24px 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        padding: 6px 0;
+      }
+
+      .navbar .container {
+        padding: 0 8px;
+      }
+
+      .logo {
+        height: 50px;
+        width: 110px;
+        padding: 0 12px 4px 0;
+      }
+
+      .hero.gradient-bg {
+        padding: 100px 0 25px 0;
+      }
+
+      .card {
+        font-size: 0.95rem;
+      }
+
+      .features-section,
+      .demo-section,
+      .contact-section {
+        padding: 40px 0;
+      }
+
+      .features {
+        gap: 16px;
+      }
+
+      .btn-primary,
+      #callButton,
+      #hangupButton,
+      button[type="submit"] {
+        padding: 10px 10px;
+        font-size: 0.95rem;
+      }
+
+      .navbar ul {
+        flex-direction: column;
+        gap: 6px;
+        align-items: flex-end;
+      }
+    }
+
+    /* Menu hamburger mobile */
+    .navbar .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      position: absolute;
+      right: 18px;
+      top: 12px;
+      z-index: 200;
+    }
+
+    @media (max-width: 700px) {
+      .navbar ul {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 60px;
+        background: rgba(43, 10, 77, 0.97);
+        flex-direction: column;
+        width: 100vw;
+        padding: 18px 0;
+        border-radius: 0 0 18px 18px;
+        box-shadow: 0 8px 32px #0005;
+      }
+
+      .navbar ul.open {
+        display: flex;
+      }
+
+      .navbar .menu-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar sticky -->
+  <nav class="navbar navbar-sticky">
+    <div class="container">
+      <img src="oklm.png" alt="Logo OKLM" class="logo">
+      <button class="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+      <ul>
+        <li><a href="#features">Fonctions</a></li>
+        <li><a href="#other-services">Autres services</a></li>
+        <li><a href="#demo">Testez</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="oklmEn.html" class="lang-switch" aria-label="Switch to English">EN</a></li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Hero section -->
+  <section class="hero gradient-bg">
+    <h1 class="text-hero animate-fade-in">Assistant Vocal IA Ultra‑Réaliste</h1>
+    <p class="hero-sub animate-fade-in">Disponible 24/7, voix naturelle, prise de rendez-vous, réponses personnalisées.
+    </p>
+    <a href="#demo" class="btn-primary animate-fade-in">Testez en direct</a>
+  </section>
+  <!-- Features section -->
+  <section class="features-section section" id="features">
+    <div class="container">
+      <h2 class="section-title animate-fade-in">Fonctionnalités Clés</h2>
+      <div class="features">
+        <div class="card animate-slide-up">
+          <h3>📞 Répond au téléphone</h3>
+          <p>Disponible 24 h/24, 7 j/7, en français québécois & anglais.</p>
+        </div>
+        <div class="card animate-slide-up">
+          <h3>🗓️ Prise de rendez‑vous</h3>
+          <p>Gestion automatique d’agenda, rappels, confirmation.</p>
+        </div>
+        <div class="card animate-slide-up">
+          <h3>💬 Réponses personnalisées</h3>
+          <p>Base de connaissances, adaptation à chaque client.</p>
+        </div>
+        <div class="card animate-slide-up">
+          <h3>🔊 Voix personnalisable</h3>
+          <p>Choix de voix, tonalités, accents pour s’aligner à votre marque.</p>
+        </div>
+        <div class="card animate-slide-up">
+          <h3>💰 Optimisation des coûts</h3>
+          <p>Réduit le besoin en personnel Économiser des heures.</p>
+        </div>
+        <div class="card animate-slide-up">
+          <h3>🚀 En service continu</h3>
+          <p>Fini les appels manqués et les temps d’attente interminable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Autres services section -->
+  <section class="features-section section" id="other-services">
+    <div class="container">
+      <h2 class="section-title animate-fade-in">Autres services</h2>
+      <div class="features">
+        <div class="card animate-slide-up">
+          <h3>💬 Assistant par texto</h3>
+          <p>Automatisez la gestion de vos SMS clients et notifications.</p>
+        </div>
+        <div class="card animate-slide-up">
+          <h3>📧 Assistant par email</h3>
+          <p>Réponses automatiques, tri, et gestion intelligente de vos emails.</p>
+        </div>
+        <div class="card animate-slide-up">
+          <h3>🕒 Gestion des horaires employés</h3>
+          <p>Planification, rappels et ajustements automatiques des horaires.</p>
+        </div>
+        <div class="card animate-slide-up">
+          <h3>🌐 Assistant intégré à votre site</h3>
+          <p>Ajoutez un assistant vocal ou chat sur votre site internet.</p>
+        </div>
+        <div class="card animate-slide-up">
+          <h3>🛠️ Création de site web</h3>
+          <p>Sites vitrines modernes, personnalisable à votre goût.</p>
+        </div>
+        <div class="card animate-slide-up">
+          <h3>✨ Proposez votre automatisation</h3>
+          <p>Vous avez une idée ? Dites-le nous, on la construit pour vous !</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Demo section -->
+  <section class="demo-section section" id="demo">
+    <div class="container">
+      <h2 class="section-title animate-fade-in">Testez en direct</h2>
+      <div class="demo animate-fade-in">
+        <h4 style="color: var(--color-primary); padding-top: 20px;">🗣️ Posez moi des questions sur nos services</h4>
+        <div class="voice-circle" id="voiceCircle"><img src="oklm.png" alt="Logo OKLM" class="logo-demo"></div>
+        <div style="display:flex;gap:16px; padding-bottom: 15px;">
+          <button id="callButton">Appeler l’assistant OKLM</button>
+          <button id="hangupButton" disabled>Raccrocher</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Contact section -->
+  <section class="contact-section section" id="contact">
+    <div class="container">
+      <h2 class="section-title animate-fade-in">Contactez‑nous</h2>
+      <form action="https://formspree.io/f/yourformid" method="POST">
+        <label>Votre email:</label>
+        <input type="email" name="email" placeholder="exemple@domaine.com" required>
+        <label>Votre message:</label>
+        <textarea name="message" rows="6" placeholder="Parlez-nous de vos besoins" required></textarea>
+        <button type="submit">Envoyer</button>
+      </form>
+    </div>
+  </section>
+  <footer>
+    &copy; 2025 OKLM • <a href="mailto:tcgreata@gmail.com">tcgreata@gmail.com</a>
+  </footer>
+  <!-- Twilio Voice SDK -->
+  <script src="https://sdk.twilio.com/js/client/v1.13/twilio.min.js"></script>
+  <script>
+    const callButton = document.getElementById("callButton");
+    const hangupButton = document.getElementById("hangupButton");
+    const voiceCircle = document.getElementById("voiceCircle");
+    let device;
+    async function getTwilioToken() {
+      const res = await fetch("/api/token"); // Doit être créé côté serveur
+      const data = await res.json();
+      return data.token;
+    }
+    async function setupTwilio() {
+      const token = await getTwilioToken();
+      Twilio.Device.setup(token, { debug: false });
+      Twilio.Device.ready(() => { console.log("Twilio Device ready"); });
+      Twilio.Device.connect(() => {
+        voiceCircle.classList.add("active");
+        hangupButton.disabled = false;
+      });
+      Twilio.Device.disconnect(() => {
+        voiceCircle.classList.remove("active");
+        hangupButton.disabled = true;
+      });
+    }
+    callButton.addEventListener("click", () => {
+      Twilio.Device.connect();
+      callButton.disabled = true;
+    });
+    hangupButton.addEventListener("click", () => {
+      Twilio.Device.disconnectAll();
+      callButton.disabled = false;
+    });
+    setupTwilio();
+    // Menu hamburger mobile
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navUl = document.querySelector('.navbar ul');
+    menuToggle.addEventListener('click', () => {
+      navUl.classList.toggle('open');
+    });
+    // Fermer le menu au clic sur un lien (mobile UX)
+    document.querySelectorAll('.navbar ul a').forEach(link => {
+      link.addEventListener('click', () => {
+        navUl.classList.remove('open');
+      });
+    });
+  </script>
+</body>
+
+</html>
