@@ -723,3 +723,14 @@
     body.dark-mode footer a {
       color: var(--color-primary);
     }
+
+    #vapi-support-btn {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    z-index: -9999 !important;
+  }
