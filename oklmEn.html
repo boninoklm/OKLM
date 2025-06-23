@@ -124,16 +124,31 @@
   </footer>
   <script>
     // Menu hamburger mobile
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navUl = document.querySelector('.navbar ul');
-    menuToggle.addEventListener('click', () => {
-      navUl.classList.toggle('open');
-    });
-    document.querySelectorAll('.navbar ul a').forEach(link => {
-      link.addEventListener('click', () => {
-        navUl.classList.remove('open');
-      });
-    });
+const menuToggle = document.querySelector('.menu-toggle');
+const navUl = document.querySelector('.navbar ul');
+
+// Ouvre/ferme le menu en cliquant sur le hamburger
+menuToggle.addEventListener('click', (e) => {
+  e.stopPropagation(); // empêche le clic de se propager au document
+  navUl.classList.toggle('open');
+});
+
+// Ferme le menu quand on clique sur un lien
+document.querySelectorAll('.navbar ul a').forEach(link => {
+  link.addEventListener('click', () => {
+    navUl.classList.remove('open');
+  });
+});
+
+// Ferme le menu si on clique à l'extérieur
+document.addEventListener('click', (e) => {
+  // Si le menu est ouvert, et qu'on clique en dehors de navUl et du bouton menu
+  if (navUl.classList.contains('open') &&
+      !navUl.contains(e.target) &&
+      !menuToggle.contains(e.target)) {
+    navUl.classList.remove('open');
+  }
+});
      // Dark/Light mode switch
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
