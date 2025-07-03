@@ -7,157 +7,303 @@
   <title>OKLM - AI Voice Assistant</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" sizes="32x32" href="image/OKLM icon.png" type="image/png">
-<link rel="icon" sizes="16x16" href="image/OKLM icon.png" type="image/png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#ffffff">
-<meta name="description" content="OKLM – Ultra-Realistic AI Voice Assistant, available 24/7, with appointment scheduling and personalized responses.">
-<meta name="keywords" content="voice assistant, AI, ultra-realistic, appointment scheduling, personalized responses, customer service">
-<meta name="author" content="OKLM Team">
+  <link rel="icon" sizes="16x16" href="image/OKLM icon.png" type="image/png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="OKLM – Ultra-Realistic AI Voice Assistant, available 24/7, with appointment scheduling and personalized responses.">
+  <meta name="keywords" content="voice assistant, AI, ultra-realistic, appointment scheduling, personalized responses, customer service">
+  <meta name="author" content="OKLM Team">
+  <!-- Font Awesome for professional icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
   <nav class="navbar navbar-sticky">
     <div class="container">
       <img src="image/OKLM.png" alt="OKLM Logo" class="logo">
-      <button class="menu-toggle" aria-label="Open menu">☰</button>
-      <ul>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#other-services">Other Services</a></li>
-        <li><a href="#demo">Try</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="index.html" class="lang-switch" aria-label="Passer en français">FR</a></li>
-        <li>
+      <button class="menu-toggle" aria-label="Open menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-menu">
+        <li><a href="#features"><i class="fas fa-star"></i> Features</a></li>
+        <li><a href="#other-services"><i class="fas fa-cogs"></i> Services</a></li>
+        <li><a href="#demo"><i class="fas fa-play"></i> Try</a></li>
+        <li><a href="#advantages"><i class="fas fa-trophy"></i> Advantages</a></li>
+        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+        <li><a href="index.html" class="lang-switch" aria-label="Switch to French">FR</a></li>
+        <li class="theme-toggle">
           <label class="switch">
             <input type="checkbox" id="darkModeToggle" class="input__check">
             <span class="slider"></span>
           </label>
+        </li>
       </ul>
     </div>
   </nav>
+
   <section class="hero gradient-bg">
-    <h1 class="text-hero animate-fade-in">Ultra-Realistic AI Voice Assistant</h1>
-    <p class="hero-sub animate-fade-in">Available 24/7, natural voice, appointment booking, personalized answers.</p>
-    <a href="#demo" class="btn-primary animate-fade-in">Try live</a>
+    <div class="hero-content">
+      <h1 class="text-hero animate-fade-in">Ultra-Realistic AI Voice Assistant</h1>
+      <p class="hero-sub animate-fade-in">Available 24/7, natural voice, appointment booking, personalized answers.</p>
+      <a href="#demo" class="btn-primary animate-fade-in">
+        <i class="fas fa-headset"></i> Try live
+      </a>
+    </div>
   </section>
+
   <section class="features-section section" id="features">
     <div class="container">
-      <h2 class="section-title animate-fade-in">Key Features</h2>
+      <h2 class="section-title animate-fade-in">
+        <i class="fas fa-star"></i> Key Features
+      </h2>
       <div class="features">
         <div class="card animate-slide-up">
-          <h3>📞 Answers the phone</h3>
+          <div class="card-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <h3>Answers the phone</h3>
           <p>Available 24/7, in Quebec French & English.</p>
         </div>
         <div class="card animate-slide-up">
-          <h3>🗓️ Appointment booking</h3>
+          <div class="card-icon">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <h3>Appointment booking</h3>
           <p>Automatic calendar management, reminders, confirmations.</p>
         </div>
         <div class="card animate-slide-up">
-          <h3>💬 Personalized answers</h3>
+          <div class="card-icon">
+            <i class="fas fa-comments"></i>
+          </div>
+          <h3>Personalized answers</h3>
           <p>Knowledge base, adapts to each client.</p>
         </div>
         <div class="card animate-slide-up">
-          <h3>🔊 Customizable voice</h3>
+          <div class="card-icon">
+            <i class="fas fa-microphone"></i>
+          </div>
+          <h3>Customizable voice</h3>
           <p>Choice of voices, tones, accents to match your brand.</p>
         </div>
         <div class="card animate-slide-up">
-          <h3>💰 Cost optimization</h3>
-          <p>Reduces staff needs, Save hours.</p>
+          <div class="card-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Cost optimization</h3>
+          <p>Reduces staff needs, saves hours.</p>
         </div>
         <div class="card animate-slide-up">
-          <h3>🚀 Continuous service</h3>
+          <div class="card-icon">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <h3>Continuous service</h3>
           <p>No more missed calls or long wait times.</p>
         </div>
       </div>
     </div>
   </section>
+
   <section class="features-section section" id="other-services">
     <div class="container">
-      <h2 class="section-title animate-fade-in">Other Services</h2>
+      <h2 class="section-title animate-fade-in">
+        <i class="fas fa-cogs"></i> Other Services
+      </h2>
       <div class="features">
         <div class="card animate-slide-up">
-          <h3>💬 SMS Assistant</h3>
+          <div class="card-icon">
+            <i class="fas fa-sms"></i>
+          </div>
+          <h3>SMS Assistant</h3>
           <p>Automate your client SMS management and notifications.</p>
         </div>
         <div class="card animate-slide-up">
-          <h3>📧 Email Assistant</h3>
+          <div class="card-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3>Email Assistant</h3>
           <p>Automatic replies, sorting, and smart email management.</p>
         </div>
         <div class="card animate-slide-up">
-          <h3>🕒 Employee schedule management</h3>
+          <div class="card-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h3>Employee schedule management</h3>
           <p>Planning, reminders, and automatic schedule adjustments.</p>
         </div>
         <div class="card animate-slide-up">
-          <h3>🌐 Website-integrated assistant</h3>
+          <div class="card-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <h3>Website-integrated assistant</h3>
           <p>Add a voice or chat assistant to your website.</p>
         </div>
         <div class="card animate-slide-up">
-          <h3>📸 Advertising Creation and Publication</h3>
+          <div class="card-icon">
+            <i class="fas fa-ad"></i>
+          </div>
+          <h3>Advertising Creation and Publication</h3>
           <p>Creation of advertisements for your business and products.</p>
         </div>
         <div class="card animate-slide-up">
-          <h3>✨ Suggest your automation</h3>
-          <p>Have an idea? Tell us, we’ll build it for you!</p>
+          <div class="card-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h3>Suggest your automation</h3>
+          <p>Have an idea? Tell us, we'll build it for you!</p>
         </div>
       </div>
     </div>
   </section>
+
   <section class="demo-section section" id="demo">
     <div class="container">
-      <h2 class="section-title animate-fade-in">Try live</h2>
+      <h2 class="section-title animate-fade-in">
+        <i class="fas fa-play"></i> Try live
+      </h2>
       <div class="demo animate-fade-in">
-        <h4 style="color: var(--color-primary); padding-top: 20px;">🗣️ Ask me about our services</h4>
-        <div class="voice-circle" id="voiceCircle"><img src="image/OKLM.png" alt="OKLM Logo" class="logo-demo"></div>
-        <div style="display:flex;gap:16px; padding-bottom: 10px;">
-          <button id="callButton">Call OKLM assistant</button>
-          <button id="hangupButton" disabled>Hang up</button>
+        <p class="cta-text">
+          <i class="fas fa-microphone"></i> Ask me about our services
+        </p>
+        <div class="voice-circle" id="voiceCircle">
+          <img src="image/OKLM.png" alt="OKLM Logo" class="logo-demo">
+        </div>
+        <div class="demo-buttons">
+          <button id="callButton" class="btn-demo">
+            <i class="fas fa-phone"></i> Call OKLM assistant
+          </button>
+          <button id="hangupButton" class="btn-demo" disabled>
+            <i class="fas fa-phone-slash"></i> Hang up
+          </button>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Advantages section -->
+  <section class="advantages-section section" id="advantages">
+    <div class="container">
+      <h2 class="section-title animate-fade-in">
+        <i class="fas fa-trophy"></i> Advantages
+      </h2>
+      <div class="advantages-grid">
+        <div class="advantage-card animate-slide-up">
+          <div class="advantage-icon"><i class="fas fa-phone-slash"></i></div>
+          <h3>No missed calls</h3>
+          <span class="advantage-stat">-30% of potential clients lost</span>
+          <p>On average, businesses lose more than 30% of potential clients due to missed calls. With OKLM, it's IMPOSSIBLE to miss a call. Available 24/7, no waiting, no effort. More calls = more clients = more money.</p>
+        </div>
+        <div class="advantage-card animate-slide-up">
+          <div class="advantage-icon"><i class="fas fa-piggy-bank"></i></div>
+          <h3>Cost reduction</h3>
+          <span class="advantage-stat">40% cheaper than an employee</span>
+          <p>Reduce your expenses. OKLM replaces the need for an employee to answer the phone for a fraction of the price, no vacations, no breaks, no mistakes.</p>
+        </div>
+        <div class="advantage-card animate-slide-up">
+          <div class="advantage-icon"><i class="fas fa-clock"></i></div>
+          <h3>Time savings</h3>
+          <span class="advantage-stat">+40 hours saved each month</span>
+          <p>By automating call management, scheduling, and customer responses, OKLM frees up more than 40 hours of work per month. Use this time to grow your business.</p>
+        </div>
+        <div class="advantage-card animate-slide-up">
+          <div class="advantage-icon"><i class="fas fa-robot"></i></div>
+          <h3>Custom automation</h3>
+          <span class="advantage-stat">100% customizable</span>
+          <p>Your needs are unique. Even if you don't see your service here, we can create it for you. Email, SMS, API, in-house system — if it exists, we can automate it.</p>
+        </div>
+      </div>
+      <div class="advantages-cta animate-fade-in">
+        <strong>Any unlisted need can be custom automated</strong>
+      </div>
+    </div>
+  </section>
+
   <section class="contact-section section" id="contact">
-    <div class="container" style="padding: 0 30px;">
-      <h2 class="section-title animate-fade-in">Contact us</h2>
-      <form action="https://formspree.io/f/mnnvvgok" method="POST">
-        <label>Your email:</label>
-        <input type="email" name="email" placeholder="example@gmail.com" required>
-        <label>Your message:</label>
-        <textarea name="message" rows="6" placeholder="Tell us about your needs" required></textarea>
-        <button type="submit">Send</button>
+    <div class="container">
+      <h2 class="section-title animate-fade-in">
+        <i class="fas fa-envelope"></i> Contact us
+      </h2>
+      <form action="https://formspree.io/f/mnnvvgok" method="POST" class="contact-form">
+        <div class="form-group">
+          <label for="email">
+            <i class="fas fa-envelope"></i> Your email:
+          </label>
+          <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+        </div>
+        <div class="form-group">
+          <label for="message">
+            <i class="fas fa-comment"></i> Your message:
+          </label>
+          <textarea id="message" name="message" rows="6" placeholder="Tell us about your needs" required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">
+          <i class="fas fa-paper-plane"></i> Send
+        </button>
       </form>
     </div>
   </section>
+
+  <div class="tagline">
+    <h1 class="section-title animate-fade-in">
+      Save time. Take it <strong class="highlight">OKLM</strong>
+    </h1>
+  </div>
+
   <footer>
-    &copy; 2025 OKLM • <a href="mailto:tcgreata@gmail.com">tcgreata@gmail.com</a>
+    <div class="footer-content">
+      <p>&copy; 2025 OKLM • <a href="mailto:tcgreata@gmail.com"><i class="fas fa-envelope"></i> Bonin@assistantoklm.com</a></p>
+    </div>
   </footer>
+
+  <!-- Feedback Modal -->
+  <div id="feedbackModal" class="modal hidden">
+    <div class="modal-content">
+      <h3>How did you find the call?</h3>
+      <div id="starRating" class="stars">
+        <span data-star="1">★</span>
+        <span data-star="2">★</span>
+        <span data-star="3">★</span>
+        <span data-star="4">★</span>
+        <span data-star="5">★</span>
+      </div>
+      <form id="feedbackForm" class="hidden" method="POST" action="https://formspree.io/f/mnnvvgok">
+        <input type="hidden" name="stars" id="starInput">
+        <label for="comment">Give us your feedback:</label>
+        <textarea name="comment" id="comment" rows="4" required placeholder="Your comment..."></textarea>
+        <button type="submit">Send</button>
+      </form>
+      <p id="errorMsg" class="error hidden">Please add a comment to send your feedback.</p>
+    </div>
+  </div>
+
   <script>
-    // Menu hamburger mobile
-const menuToggle = document.querySelector('.menu-toggle');
-const navUl = document.querySelector('.navbar ul');
+    // Mobile hamburger menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navUl = document.querySelector('.navbar ul');
 
-// Ouvre/ferme le menu en cliquant sur le hamburger
-menuToggle.addEventListener('click', (e) => {
-  e.stopPropagation(); // empêche le clic de se propager au document
-  navUl.classList.toggle('open');
-});
+    // Open/close menu when clicking hamburger
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navUl.classList.toggle('open');
+    });
 
-// Ferme le menu quand on clique sur un lien
-document.querySelectorAll('.navbar ul a').forEach(link => {
-  link.addEventListener('click', () => {
-    navUl.classList.remove('open');
-  });
-});
+    // Close menu when clicking on a link
+    document.querySelectorAll('.navbar ul a').forEach(link => {
+      link.addEventListener('click', () => {
+        navUl.classList.remove('open');
+      });
+    });
 
-// Ferme le menu si on clique à l'extérieur
-document.addEventListener('click', (e) => {
-  // Si le menu est ouvert, et qu'on clique en dehors de navUl et du bouton menu
-  if (navUl.classList.contains('open') &&
-      !navUl.contains(e.target) &&
-      !menuToggle.contains(e.target)) {
-    navUl.classList.remove('open');
-  }
-});
-     // Dark/Light mode switch
+    // Close menu if clicking outside
+    document.addEventListener('click', (e) => {
+      if (navUl.classList.contains('open') &&
+          !navUl.contains(e.target) &&
+          !menuToggle.contains(e.target)) {
+        navUl.classList.remove('open');
+      }
+    });
+
+    // Dark/Light mode switch
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
     // Load preference
@@ -181,7 +327,7 @@ document.addEventListener('click', (e) => {
     const voiceCircle = document.getElementById("voiceCircle");
 
     callButton.addEventListener("click", () => {
-      if (!vapiInstance) return console.error("Widget Vapi non chargé");
+      if (!vapiInstance) return console.error("Vapi widget not loaded");
 
       vapiInstance.start("12f7fe20-3241-4dc5-9de1-b980e7f6cb0d");
       callButton.disabled = true;
@@ -196,10 +342,87 @@ document.addEventListener('click', (e) => {
       callButton.disabled = false;
       hangupButton.disabled = true;
       voiceCircle.classList.remove("active");
+
+      // Show feedback modal
+      document.getElementById('feedbackModal').classList.remove('hidden');
     });
 
-    // Gestes d'état si besoin
-    // vapiInstance.on('call-start', ...) ; vapiInstance.on('call-end', ...)
+    // Close modal if clicking outside or pressing Escape
+    document.addEventListener('click', function(e) {
+      const modal = document.getElementById('feedbackModal');
+      if (!modal.classList.contains('hidden')) {
+        if (e.target === modal) {
+          modal.classList.add('hidden');
+          resetFeedbackModal();
+        }
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      const modal = document.getElementById('feedbackModal');
+      if (!modal.classList.contains('hidden') && e.key === 'Escape') {
+        modal.classList.add('hidden');
+        resetFeedbackModal();
+      }
+    });
+    // Add close button (X)
+    (function addCloseBtn() {
+      const modal = document.getElementById('feedbackModal');
+      if (!modal.querySelector('.close-modal')) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'close-modal';
+        btn.innerHTML = '&times;';
+        btn.style.position = 'absolute';
+        btn.style.top = '12px';
+        btn.style.right = '18px';
+        btn.style.background = 'none';
+        btn.style.border = 'none';
+        btn.style.color = 'var(--color-primary)';
+        btn.style.fontSize = '2rem';
+        btn.style.cursor = 'pointer';
+        btn.style.zIndex = '10';
+        btn.setAttribute('aria-label', 'Close');
+        btn.onclick = function() {
+          modal.classList.add('hidden');
+          resetFeedbackModal();
+        };
+        modal.querySelector('.modal-content').appendChild(btn);
+      }
+    })();
+    // Reset feedback modal
+    function resetFeedbackModal() {
+      document.getElementById('starInput').value = '';
+      document.getElementById('feedbackForm').classList.add('hidden');
+      document.getElementById('errorMsg').classList.add('hidden');
+      document.querySelectorAll('#starRating span').forEach(s => s.classList.remove('selected'));
+      document.getElementById('comment').value = '';
+    }
+
+    // Star rating logic
+    const stars = document.querySelectorAll('#starRating span');
+    const form = document.getElementById('feedbackForm');
+    const starInput = document.getElementById('starInput');
+    const errorMsg = document.getElementById('errorMsg');
+
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        const rating = star.dataset.star;
+        starInput.value = rating;
+        stars.forEach(s => s.classList.remove('selected'));
+        for (let i = 0; i < rating; i++) stars[i].classList.add('selected');
+        form.classList.remove('hidden');
+        errorMsg.classList.add('hidden');
+      });
+    });
+
+    // Block if no comment
+    form.addEventListener('submit', (e) => {
+      const comment = document.getElementById('comment').value.trim();
+      if (!comment) {
+        e.preventDefault();
+        errorMsg.classList.remove('hidden');
+      }
+    });
   </script>
 
   <script>
@@ -217,9 +440,9 @@ document.addEventListener('click', (e) => {
       s.parentNode.insertBefore(g, s);
       g.onload = function () {
         vapiInstance = window.vapiSDK.run({
-          apiKey: apiKey,      // obligatoire
-          assistant: assistant,// obligatoire
-          config: buttonConfig // optionnel : styles et textes
+          apiKey: apiKey, // required
+          assistant: assistant, // required
+          config: buttonConfig // optional: styles and texts
         });
       };
     })(document, "script");
