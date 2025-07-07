@@ -1216,9 +1216,14 @@ section {
   
   /* Navbar mobile */
   .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
     padding: 8px 16px;
     background: rgba(20, 20, 30, 0.95);
-    position: relative;
+    backdrop-filter: blur(10px);
   }
   
   .nav-container {
@@ -1241,6 +1246,12 @@ section {
     right: 16px;
     top: 50%;
     transform: translateY(-50%);
+  }
+  
+  /* Adjust hero section to account for fixed navbar */
+  .hero {
+    padding: 80px 20px 40px 20px;
+    min-height: 60vh;
   }
   
   .nav-menu {
