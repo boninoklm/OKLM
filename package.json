@@ -1,0 +1,27 @@
+{
+  "name": "oklm-assistant",
+  "version": "2.0.0",
+  "description": "OKLM - Ultra-Realistic AI Voice Assistant with modern design and 3D animations",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "serve": "python -m http.server 8000"
+  },
+  "keywords": [
+    "assistant-vocal",
+    "ai",
+    "automation",
+    "vapi",
+    "threejs",
+    "gsap",
+    "mobile-first",
+    "dark-theme"
+  ],
+  "author": "OKLM Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oklm/assistant-vocal"
+  },
+  "homepage": "https://assistantoklm.com"
+} 

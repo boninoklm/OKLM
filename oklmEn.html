@@ -10,143 +10,317 @@
   <link rel="icon" sizes="16x16" href="image/OKLM icon.png" type="image/png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="OKLM – Ultra-Realistic AI Voice Assistant, available 24/7, with appointment scheduling and personalized responses.">
+  <meta name="theme-color" content="#0a0a0f">
+  <meta name="description" content="OKLM - Ultra-Realistic AI Voice Assistant, available 24/7, with appointment scheduling and personalized responses.">
   <meta name="keywords" content="voice assistant, AI, ultra-realistic, appointment scheduling, personalized responses, customer service">
   <meta name="author" content="OKLM Team">
   <!-- Font Awesome for professional icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Three.js for 3D animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- GSAP for advanced animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
 <body>
-  <nav class="navbar navbar-sticky">
-    <div class="container">
-      <img src="image/OKLM.png" alt="OKLM Logo" class="logo">
-      <button class="menu-toggle" aria-label="Open menu">
-        <i class="fas fa-bars"></i>
+  <!-- Animated background with technological neurons -->
+  <div id="neuralBackground" class="neural-bg"></div>
+  
+  <!-- Main 3D canvas -->
+  <canvas id="mainCanvas" class="main-canvas"></canvas>
+
+  <!-- Minimalist navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <img src="image/OKLM.png" alt="OKLM Logo" class="logo desktop-logo">
+      <img src="image/OKLM.png" alt="OKLM Logo" class="logo mobile-logo">
+      <button class="menu-toggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
-      <ul class="nav-menu">
-        <li><a href="#features"><i class="fas fa-star"></i> Features</a></li>
-        <li><a href="#other-services"><i class="fas fa-cogs"></i> Services</a></li>
-        <li><a href="#demo"><i class="fas fa-play"></i> Try</a></li>
-        <li><a href="#advantages"><i class="fas fa-trophy"></i> Advantages</a></li>
-        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-        <li><a href="index.html" class="lang-switch" aria-label="Switch to French">FR</a></li>
-        <li class="theme-toggle">
-          <label class="switch">
-            <input type="checkbox" id="darkModeToggle" class="input__check">
-            <span class="slider"></span>
-          </label>
-        </li>
-      </ul>
+      <div class="nav-menu">
+        <a href="#features" class="nav-link">
+          <i class="fas fa-star"></i>
+          <span class="desktop-text">Features</span>
+          <span class="mobile-text">Features</span>
+        </a>
+        <a href="#automation" class="nav-link">
+          <i class="fas fa-cogs"></i>
+          <span class="desktop-text">Automation</span>
+          <span class="mobile-text">Auto</span>
+        </a>
+        <a href="#advantages" class="nav-link">
+          <i class="fas fa-trophy"></i>
+          <span class="desktop-text">Advantages</span>
+          <span class="mobile-text">Advant.</span>
+        </a>
+        <a href="#contact" class="nav-link">
+          <i class="fas fa-envelope"></i>
+          <span class="desktop-text">Contact</span>
+          <span class="mobile-text">Contact</span>
+        </a>
+        <a href="#demo" class="nav-link">
+          <i class="fas fa-phone"></i>
+          <span class="desktop-text">Test AI</span>
+          <span class="mobile-text">Test</span>
+        </a>
+        <a href="index.html" class="nav-link nav-lang" style="margin-left:12px;">
+          <span>FR</span>
+        </a>
+      </div>
     </div>
   </nav>
 
-  <section class="hero gradient-bg">
+  <!-- Hero Section -->
+  <section class="hero">
     <div class="hero-content">
-      <h1 class="text-hero animate-fade-in">Ultra-Realistic AI Voice Assistant</h1>
-      <p class="hero-sub animate-fade-in">Available 24/7, natural voice, appointment booking, personalized answers.</p>
-      <a href="#demo" class="btn-primary animate-fade-in">
-        <i class="fas fa-headset"></i> Try live
+      <h1 class="hero-title">
+        <span class="desktop-text">Ultra-Realistic AI Voice Assistant</span>
+        <span class="mobile-text">Ultra-Realistic AI Voice Assistant</span>
+      </h1>
+      <p class="hero-subtitle">
+        <span class="desktop-text">Available 24/7, natural voice, appointment scheduling, personalized responses.</span>
+        <span class="mobile-text">Available 24/7, natural voice, appointment scheduling, personalized responses.</span>
+      </p>
+      <a href="#demo" class="hero-cta">
+        <i class="fas fa-headset"></i>
+        <span class="desktop-text">Test live</span>
+        <span class="mobile-text">Test</span>
       </a>
     </div>
+    <!-- Mini 3D neurons in background -->
+    <div id="heroNeurons" class="hero-neurons"></div>
   </section>
 
-  <section class="features-section section" id="features">
-    <div class="container">
-      <h2 class="section-title animate-fade-in">
-        <i class="fas fa-star"></i> Key Features
+  <!-- Demo Call Section -->
+  <section class="demo-section" id="demo">
+    <div class="section-container">
+      <h2 class="section-title">
+        Test the <span class="title-accent">OKLM</span> Assistant
       </h2>
-      <div class="features">
-        <div class="card animate-slide-up">
-          <div class="card-icon">
-            <i class="fas fa-phone-alt"></i>
+      
+      <div class="demo-interface">
+        <div class="demo-visual">
+          <div class="voice-orb" id="voiceOrb">
+            <div class="orb-core">
+              <img src="image/OKLM.png" alt="OKLM" class="orb-logo">
+            </div>
+            <div class="orb-rings">
+              <div class="ring ring-1"></div>
+              <div class="ring ring-2"></div>
+              <div class="ring ring-3"></div>
+            </div>
           </div>
-          <h3>Answers the phone</h3>
-          <p>Available 24/7, in Quebec French & English.</p>
         </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
-            <i class="fas fa-calendar-alt"></i>
-          </div>
-          <h3>Appointment booking</h3>
-          <p>Automatic calendar management, reminders, confirmations.</p>
-        </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
-            <i class="fas fa-comments"></i>
-          </div>
-          <h3>Personalized answers</h3>
-          <p>Knowledge base, adapts to each client.</p>
-        </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
+        
+        <div class="demo-controls">
+          <p class="demo-instruction">
             <i class="fas fa-microphone"></i>
+            <span class="desktop-text">Ask me questions about our services</span>
+            <span class="mobile-text">Ask me questions about our services</span>
+          </p>
+          
+          <div class="demo-buttons">
+            <button id="callButton" class="btn-call">
+              <i class="fas fa-phone"></i>
+              <span class="desktop-text">Call the assistant</span>
+              <span class="mobile-text">Call</span>
+            </button>
+            <button id="hangupButton" class="btn-hangup" disabled>
+              <i class="fas fa-phone-slash"></i>
+              <span class="desktop-text">Hang up</span>
+              <span class="mobile-text">Stop</span>
+            </button>
           </div>
-          <h3>Customizable voice</h3>
-          <p>Choice of voices, tones, accents to match your brand.</p>
-        </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <h3>Cost optimization</h3>
-          <p>Reduces staff needs, saves hours.</p>
-        </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
-            <i class="fas fa-rocket"></i>
-          </div>
-          <h3>Continuous service</h3>
-          <p>No more missed calls or long wait times.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="features-section section" id="other-services">
-    <div class="container">
-      <h2 class="section-title animate-fade-in">
-        <i class="fas fa-cogs"></i> Other Services
+  <!-- Features Section -->
+  <section class="features-section" id="features">
+    <div class="section-container">
+      <h2 class="section-title">
+        <span class="desktop-text">Key <span class="title-accent">Features</span></span>
+        <span class="mobile-text">Key <span class="title-accent">Features</span></span>
       </h2>
-      <div class="features">
-        <div class="card animate-slide-up">
-          <div class="card-icon">
+      
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <h3>Answers the phone</h3>
+          <p>Available 24/7, in Quebec French & English.</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <h3>Appointment scheduling</h3>
+          <p>Automatic calendar management, reminders, confirmations.</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-comments"></i>
+          </div>
+          <h3>Personalized responses</h3>
+          <p>Knowledge base, adapts to each client.</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-microphone"></i>
+          </div>
+          <h3>Customizable voice</h3>
+          <p>Choice of voices, tones, accents to match your brand.</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Cost optimization</h3>
+          <p>Reduces staff needs, saves hours.</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <h3>Continuous service</h3>
+          <p>No more missed calls or endless wait times.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Automation Section -->
+  <section class="automation-section" id="automation">
+    <div class="section-container">
+      <h2 class="section-title">
+        <span class="desktop-text">Intelligent <span class="title-accent">Automation</span></span>
+        <span class="mobile-text">Intelligent <span class="title-accent">Automation</span></span>
+      </h2>
+      
+      <div class="automation-flow">
+        <div class="flow-step">
+          <div class="step-visual">
+            <i class="fas fa-phone"></i>
+          </div>
+          <h3>Incoming Call</h3>
+          <p>OKLM answers instantly</p>
+        </div>
+        
+        <div class="flow-connector">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+        
+        <div class="flow-step">
+          <div class="step-visual">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3>AI Analysis</h3>
+          <p>Understanding the need</p>
+        </div>
+        
+        <div class="flow-connector">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+        
+        <div class="flow-step">
+          <div class="step-visual">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <h3>Automatic Action</h3>
+          <p>Appointment, response, follow-up</p>
+        </div>
+        
+        <div class="flow-connector">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+        
+        <div class="flow-step">
+          <div class="step-visual">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Result</h3>
+          <p>Satisfied client, time saved</p>
+        </div>
+      </div>
+      
+      <div class="automation-stats">
+        <div class="stat-item">
+          <div class="stat-number" data-target="99">0</div>
+          <div class="stat-label">% satisfaction</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="40">0</div>
+          <div class="stat-label">hours saved/month</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="30">0</div>
+          <div class="stat-label">% cost reduction</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services-section">
+    <div class="section-container">
+      <h2 class="section-title">
+        <span class="desktop-text">Other <span class="title-accent">Services</span></span>
+        <span class="mobile-text">Other <span class="title-accent">Services</span></span>
+      </h2>
+      
+      <div class="services-grid">
+        <div class="service-item">
+          <div class="service-icon">
             <i class="fas fa-sms"></i>
           </div>
           <h3>SMS Assistant</h3>
           <p>Automate your client SMS management and notifications.</p>
         </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
+        
+        <div class="service-item">
+          <div class="service-icon">
             <i class="fas fa-envelope"></i>
           </div>
           <h3>Email Assistant</h3>
           <p>Automatic replies, sorting, and smart email management.</p>
         </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
+        
+        <div class="service-item">
+          <div class="service-icon">
             <i class="fas fa-clock"></i>
           </div>
           <h3>Employee schedule management</h3>
           <p>Planning, reminders, and automatic schedule adjustments.</p>
         </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
+        
+        <div class="service-item">
+          <div class="service-icon">
             <i class="fas fa-globe"></i>
           </div>
           <h3>Website-integrated assistant</h3>
           <p>Add a voice or chat assistant to your website.</p>
         </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
+        
+        <div class="service-item">
+          <div class="service-icon">
             <i class="fas fa-ad"></i>
           </div>
           <h3>Advertising Creation and Publication</h3>
           <p>Creation of advertisements for your business and products.</p>
         </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
+        
+        <div class="service-item">
+          <div class="service-icon">
             <i class="fas fa-lightbulb"></i>
           </div>
           <h3>Suggest your automation</h3>
@@ -156,175 +330,164 @@
     </div>
   </section>
 
-  <section class="demo-section section" id="demo">
-    <div class="container">
-      <h2 class="section-title animate-fade-in">
-        <i class="fas fa-play"></i> Try live
+  <!-- Advantages Section -->
+  <section class="advantages-section" id="advantages">
+    <div class="section-container">
+      <h2 class="section-title">
+        <span class="desktop-text">Concrete <span class="title-accent">Advantages</span></span>
+        <span class="mobile-text">Concrete <span class="title-accent">Advantages</span></span>
       </h2>
-      <div class="demo animate-fade-in">
-        <p class="cta-text">
-          <i class="fas fa-microphone"></i> Ask me about our services
-        </p>
-        <div class="voice-circle" id="voiceCircle">
-          <img src="image/OKLM.png" alt="OKLM Logo" class="logo-demo">
-        </div>
-        <div class="demo-buttons">
-          <button id="callButton" class="btn-demo">
-            <i class="fas fa-phone"></i> Call OKLM assistant
-          </button>
-          <button id="hangupButton" class="btn-demo" disabled>
-            <i class="fas fa-phone-slash"></i> Hang up
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Advantages section -->
-  <section class="advantages-section section" id="advantages">
-    <div class="container">
-      <h2 class="section-title animate-fade-in">
-        <i class="fas fa-trophy"></i> Advantages
-      </h2>
+      
       <div class="advantages-grid">
-        <div class="advantage-card animate-slide-up">
-          <div class="advantage-icon"><i class="fas fa-phone-slash"></i></div>
+        <div class="advantage-item">
+          <div class="advantage-icon">
+            <i class="fas fa-phone-slash"></i>
+          </div>
           <h3>No missed calls</h3>
-          <span class="advantage-stat">-30% of potential clients lost</span>
+          <div class="advantage-stat">-30% of potential clients lost</div>
           <p>On average, businesses lose more than 30% of potential clients due to missed calls. With OKLM, it's IMPOSSIBLE to miss a call. Available 24/7, no waiting, no effort. More calls = more clients = more money.</p>
         </div>
-        <div class="advantage-card animate-slide-up">
-          <div class="advantage-icon"><i class="fas fa-piggy-bank"></i></div>
+        
+        <div class="advantage-item">
+          <div class="advantage-icon">
+            <i class="fas fa-piggy-bank"></i>
+          </div>
           <h3>Cost reduction</h3>
-          <span class="advantage-stat">40% cheaper than an employee</span>
+          <div class="advantage-stat">40% cheaper than an employee</div>
           <p>Reduce your expenses. OKLM replaces the need for an employee to answer the phone for a fraction of the price, no vacations, no breaks, no mistakes.</p>
         </div>
-        <div class="advantage-card animate-slide-up">
-          <div class="advantage-icon"><i class="fas fa-clock"></i></div>
+        
+        <div class="advantage-item">
+          <div class="advantage-icon">
+            <i class="fas fa-clock"></i>
+          </div>
           <h3>Time savings</h3>
-          <span class="advantage-stat">+40 hours saved each month</span>
-          <p>By automating call management, scheduling, and customer responses, OKLM frees up more than 40 hours of work per month. Use this time to grow your business.</p>
+          <div class="advantage-stat">+40 hours saved each month</div>
+          <p>By automating call management, schedules, and client responses, OKLM frees up more than 40 hours of work per month. Use this time to grow your business.</p>
         </div>
-        <div class="advantage-card animate-slide-up">
-          <div class="advantage-icon"><i class="fas fa-robot"></i></div>
+        
+        <div class="advantage-item">
+          <div class="advantage-icon">
+            <i class="fas fa-robot"></i>
+          </div>
           <h3>Custom automation</h3>
-          <span class="advantage-stat">100% customizable</span>
-          <p>Your needs are unique. Even if you don't see your service here, we can create it for you. Email, SMS, API, in-house system — if it exists, we can automate it.</p>
+          <div class="advantage-stat">100% customizable</div>
+          <p>Your needs are unique. Even if you don't see your service here, we can create it for you. Email, SMS, API, custom system — if it exists, we can automate it.</p>
         </div>
       </div>
-      <div class="advantages-cta animate-fade-in">
+      
+      <div class="advantages-cta">
         <strong>Any unlisted need can be custom automated</strong>
       </div>
     </div>
   </section>
 
-  <section class="contact-section section" id="contact">
-    <div class="container">
-      <h2 class="section-title animate-fade-in">
-        <i class="fas fa-envelope"></i> Contact us
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <div class="section-container">
+      <h2 class="section-title">
+        <span class="desktop-text">Contact <span class="title-accent">Us</span></span>
+        <span class="mobile-text">Contact <span class="title-accent">Us</span></span>
       </h2>
+      
       <form action="https://formspree.io/f/mnnvvgok" method="POST" class="contact-form">
         <div class="form-group">
           <label for="email">
-            <i class="fas fa-envelope"></i> Your email:
+            <i class="fas fa-envelope"></i>
+            Your email:
           </label>
           <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
         </div>
+        
         <div class="form-group">
           <label for="message">
-            <i class="fas fa-comment"></i> Your message:
+            <i class="fas fa-comment"></i>
+            Your message:
           </label>
           <textarea id="message" name="message" rows="6" placeholder="Tell us about your needs" required></textarea>
         </div>
+        
         <button type="submit" class="btn-submit">
-          <i class="fas fa-paper-plane"></i> Send
+          <i class="fas fa-paper-plane"></i>
+          <span>Send</span>
         </button>
       </form>
     </div>
   </section>
 
-  <div class="tagline">
-    <h1 class="section-title animate-fade-in">
-      Save time. Take it <strong class="highlight">OKLM</strong>
-    </h1>
-  </div>
+  <!-- Tagline -->
+  <section class="tagline-section">
+    <div class="section-container">
+      <h1 class="tagline-title">
+        Save time. Take it <strong class="highlight">OKLM</strong>
+      </h1>
+    </div>
+  </section>
 
-  <footer>
+  <!-- Footer -->
+  <footer class="footer">
     <div class="footer-content">
-      <p>&copy; 2025 OKLM • <a href="mailto:tcgreata@gmail.com"><i class="fas fa-envelope"></i> Bonin@assistantoklm.com</a></p>
+      <p>&copy; 2025 OKLM • <a href="mailto:tcgreata@gmail.com">
+        <i class="fas fa-envelope"></i> Bonin@assistantoklm.com
+      </a></p>
     </div>
   </footer>
 
   <!-- Feedback Modal -->
-  <div id="feedbackModal" class="modal hidden">
+  <div id="feedbackModal" class="feedback-modal">
     <div class="modal-content">
       <h3>How did you find the call?</h3>
-      <div id="starRating" class="stars">
+      
+      <div class="star-rating" id="starRating">
         <span data-star="1">★</span>
         <span data-star="2">★</span>
         <span data-star="3">★</span>
         <span data-star="4">★</span>
         <span data-star="5">★</span>
       </div>
-      <form id="feedbackForm" class="hidden" method="POST" action="https://formspree.io/f/mnnvvgok">
+      
+      <form id="feedbackForm" class="feedback-form" method="POST" action="https://formspree.io/f/mnnvvgok">
         <input type="hidden" name="stars" id="starInput">
         <label for="comment">Give us your feedback:</label>
         <textarea name="comment" id="comment" rows="4" required placeholder="Your comment..."></textarea>
         <button type="submit">Send</button>
       </form>
-      <p id="errorMsg" class="error hidden">Please add a comment to send your feedback.</p>
+      
+      <p id="errorMsg" class="error-message">Please add a comment to send your feedback.</p>
     </div>
   </div>
 
+  <!-- Scripts -->
   <script>
-    // Mobile hamburger menu
+    // GSAP initialization
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Permanent dark mode
+    document.body.classList.add('dark-mode');
+    
+    // Mobile menu
     const menuToggle = document.querySelector('.menu-toggle');
-    const navUl = document.querySelector('.navbar ul');
-
-    // Open/close menu when clicking hamburger
-    menuToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      navUl.classList.toggle('open');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('active');
     });
-
+    
     // Close menu when clicking on a link
-    document.querySelectorAll('.navbar ul a').forEach(link => {
+    document.querySelectorAll('.nav-menu a').forEach(link => {
       link.addEventListener('click', () => {
-        navUl.classList.remove('open');
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('active');
       });
     });
-
-    // Close menu if clicking outside
-    document.addEventListener('click', (e) => {
-      if (navUl.classList.contains('open') &&
-          !navUl.contains(e.target) &&
-          !menuToggle.contains(e.target)) {
-        navUl.classList.remove('open');
-      }
-    });
-
-    // Dark/Light mode switch
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const body = document.body;
-    // Load preference
-    if (localStorage.getItem('oklm-theme') === 'dark') {
-      body.classList.add('dark-mode');
-      darkModeToggle.checked = true;
-    }
-    darkModeToggle.addEventListener('change', function () {
-      if (this.checked) {
-        body.classList.add('dark-mode');
-        localStorage.setItem('oklm-theme', 'dark');
-      } else {
-        body.classList.remove('dark-mode');
-        localStorage.setItem('oklm-theme', 'light');
-      }
-    });
   </script>
+  
   <script>
+    // Vapi Integration
     const callButton = document.getElementById("callButton");
     const hangupButton = document.getElementById("hangupButton");
-    const voiceCircle = document.getElementById("voiceCircle");
+    const voiceOrb = document.getElementById("voiceOrb");
 
     callButton.addEventListener("click", () => {
       if (!vapiInstance) return console.error("Vapi widget not loaded");
@@ -332,7 +495,7 @@
       vapiInstance.start("12f7fe20-3241-4dc5-9de1-b980e7f6cb0d");
       callButton.disabled = true;
       hangupButton.disabled = false;
-      voiceCircle.classList.add("active");
+      voiceOrb.classList.add("active");
     });
 
     hangupButton.addEventListener("click", () => {
@@ -341,91 +504,68 @@
       vapiInstance.stop();
       callButton.disabled = false;
       hangupButton.disabled = true;
-      voiceCircle.classList.remove("active");
+      voiceOrb.classList.remove("active");
 
-      // Show feedback modal
-      document.getElementById('feedbackModal').classList.remove('hidden');
+      // Automatically show feedback modal
+      setTimeout(() => {
+        document.getElementById('feedbackModal').classList.add('show');
+      }, 500);
     });
 
-    // Close modal if clicking outside or pressing Escape
-    document.addEventListener('click', function(e) {
-      const modal = document.getElementById('feedbackModal');
-      if (!modal.classList.contains('hidden')) {
-        if (e.target === modal) {
-          modal.classList.add('hidden');
-          resetFeedbackModal();
-        }
-      }
-    });
-    document.addEventListener('keydown', function(e) {
-      const modal = document.getElementById('feedbackModal');
-      if (!modal.classList.contains('hidden') && e.key === 'Escape') {
-        modal.classList.add('hidden');
-        resetFeedbackModal();
-      }
-    });
-    // Add close button (X)
-    (function addCloseBtn() {
-      const modal = document.getElementById('feedbackModal');
-      if (!modal.querySelector('.close-modal')) {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'close-modal';
-        btn.innerHTML = '&times;';
-        btn.style.position = 'absolute';
-        btn.style.top = '12px';
-        btn.style.right = '18px';
-        btn.style.background = 'none';
-        btn.style.border = 'none';
-        btn.style.color = 'var(--color-primary)';
-        btn.style.fontSize = '2rem';
-        btn.style.cursor = 'pointer';
-        btn.style.zIndex = '10';
-        btn.setAttribute('aria-label', 'Close');
-        btn.onclick = function() {
-          modal.classList.add('hidden');
-          resetFeedbackModal();
-        };
-        modal.querySelector('.modal-content').appendChild(btn);
-      }
-    })();
-    // Reset feedback modal
-    function resetFeedbackModal() {
-      document.getElementById('starInput').value = '';
-      document.getElementById('feedbackForm').classList.add('hidden');
-      document.getElementById('errorMsg').classList.add('hidden');
-      document.querySelectorAll('#starRating span').forEach(s => s.classList.remove('selected'));
-      document.getElementById('comment').value = '';
-    }
-
-    // Star rating logic
+    // Feedback Modal
+    const feedbackModal = document.getElementById('feedbackModal');
     const stars = document.querySelectorAll('#starRating span');
     const form = document.getElementById('feedbackForm');
     const starInput = document.getElementById('starInput');
     const errorMsg = document.getElementById('errorMsg');
 
+    // Close modal
+    feedbackModal.addEventListener('click', (e) => {
+      if (e.target === feedbackModal) {
+        feedbackModal.classList.remove('show');
+        resetFeedbackModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && feedbackModal.classList.contains('show')) {
+        feedbackModal.classList.remove('show');
+        resetFeedbackModal();
+      }
+    });
+
+    // Star rating
     stars.forEach(star => {
       star.addEventListener('click', () => {
         const rating = star.dataset.star;
         starInput.value = rating;
         stars.forEach(s => s.classList.remove('selected'));
         for (let i = 0; i < rating; i++) stars[i].classList.add('selected');
-        form.classList.remove('hidden');
-        errorMsg.classList.add('hidden');
+        form.classList.add('show');
+        errorMsg.classList.remove('show');
       });
     });
 
-    // Block if no comment
+    // Form validation
     form.addEventListener('submit', (e) => {
       const comment = document.getElementById('comment').value.trim();
       if (!comment) {
         e.preventDefault();
-        errorMsg.classList.remove('hidden');
+        errorMsg.classList.add('show');
       }
     });
+
+    function resetFeedbackModal() {
+      starInput.value = '';
+      form.classList.remove('show');
+      errorMsg.classList.remove('show');
+      stars.forEach(s => s.classList.remove('selected'));
+      document.getElementById('comment').value = '';
+    }
   </script>
 
   <script>
+    // Vapi SDK
     var vapiInstance = null;
     const assistant = "12f7fe20-3241-4dc5-9de1-b980e7f6cb0d";
     const apiKey = "f67d37f8-109f-4900-85ed-9aaf231a7135";
@@ -440,13 +580,247 @@
       s.parentNode.insertBefore(g, s);
       g.onload = function () {
         vapiInstance = window.vapiSDK.run({
-          apiKey: apiKey, // required
-          assistant: assistant, // required
-          config: buttonConfig // optional: styles and texts
+          apiKey: apiKey,
+          assistant: assistant,
+          config: buttonConfig
         });
       };
     })(document, "script");
   </script>
+  
+  <!-- Advanced animation scripts -->
+  <script>
+    // Neural background animation
+    class NeuralBackground {
+      constructor() {
+        this.container = document.getElementById('neuralBackground');
+        this.canvas = document.createElement('canvas');
+        this.ctx = this.canvas.getContext('2d');
+        this.particles = [];
+        this.connections = [];
+        this.sections = [];
+        
+        this.container.appendChild(this.canvas);
+        this.init();
+        this.animate();
+      }
+      
+      init() {
+        this.resize();
+        window.addEventListener('resize', () => this.resize());
+        
+        // Create particles
+        for (let i = 0; i < 120; i++) {
+          this.particles.push({
+            x: Math.random() * this.canvas.width,
+            y: Math.random() * this.canvas.height,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+            size: Math.random() * 1.2 + 0.5,
+            section: Math.floor(Math.random() * 6)
+          });
+        }
+        
+        // Create connections (more lines)
+        this.connections = [];
+        for (let i = 0; i < this.particles.length; i++) {
+          for (let j = i + 1; j < this.particles.length; j++) {
+            const distance = Math.hypot(
+              this.particles[i].x - this.particles[j].x,
+              this.particles[i].y - this.particles[j].y
+            );
+            if (distance < 60 && Math.random() < 0.25) {
+              this.connections.push({
+                from: i,
+                to: j,
+                distance: distance
+              });
+            }
+          }
+        }
+        // Ensure there are always at least 8 lines
+        while (this.connections.length < 8) {
+          const i = Math.floor(Math.random() * this.particles.length);
+          let j = Math.floor(Math.random() * this.particles.length);
+          while (j === i) j = Math.floor(Math.random() * this.particles.length);
+          const distance = Math.hypot(
+            this.particles[i].x - this.particles[j].x,
+            this.particles[i].y - this.particles[j].y
+          );
+          if (distance < 60) {
+            this.connections.push({
+              from: i,
+              to: j,
+              distance: distance
+            });
+          }
+        }
+        
+        // Detect sections
+        this.detectSections();
+      }
+      
+      resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+      }
+      
+      detectSections() {
+        const sections = document.querySelectorAll('section');
+        sections.forEach((section, index) => {
+          this.sections.push({
+            element: section,
+            index: index,
+            bounds: section.getBoundingClientRect()
+          });
+        });
+      }
+      
+      animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        // Update particles
+        this.particles.forEach(particle => {
+          particle.x += particle.vx;
+          particle.y += particle.vy;
+          
+          // Bounce off edges
+          if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
+          if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
+        });
+        
+        // Draw connections
+        this.ctx.strokeStyle = 'rgba(192, 192, 192, 0.1)';
+        this.ctx.lineWidth = 1;
+        
+        this.connections.forEach(connection => {
+          const from = this.particles[connection.from];
+          const to = this.particles[connection.to];
+          
+          this.ctx.beginPath();
+          this.ctx.moveTo(from.x, from.y);
+          this.ctx.lineTo(to.x, to.y);
+          this.ctx.stroke();
+        });
+        
+        // Draw particles
+        this.particles.forEach(particle => {
+          this.ctx.fillStyle = 'rgba(255, 44, 44, 0.6)';
+          this.ctx.beginPath();
+          this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+          this.ctx.fill();
+        });
+        
+        // Illuminate particles of active section
+        this.highlightActiveSection();
+        
+        requestAnimationFrame(() => this.animate());
+      }
+      
+      highlightActiveSection() {
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+        
+        this.sections.forEach(section => {
+          const rect = section.element.getBoundingClientRect();
+          const isVisible = rect.top < windowHeight && rect.bottom > 0;
+          
+          if (isVisible) {
+            this.particles.forEach(particle => {
+              if (particle.section === section.index) {
+                particle.size = Math.random() * 3 + 2;
+                this.ctx.fillStyle = 'rgba(255, 44, 44, 0.8)';
+              }
+            });
+          }
+        });
+      }
+    }
+    
+    // Main 3D scene
+    class Main3DScene {
+      constructor() {
+        this.canvas = document.getElementById('mainCanvas');
+        this.scene = new THREE.Scene();
+        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, alpha: true });
+        
+        this.init();
+        this.animate();
+      }
+      
+      init() {
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.setClearColor(0x000000, 0);
+        
+        // Create chrome icosahedron
+        const geometry = new THREE.IcosahedronGeometry(2, 1);
+        const material = new THREE.MeshBasicMaterial({ 
+          color: 0xC0C0C0,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.3
+        });
+        
+        this.mesh = new THREE.Mesh(geometry, material);
+        this.scene.add(this.mesh);
+        
+        this.camera.position.z = 8;
+        
+        // Responsive
+        window.addEventListener('resize', () => this.onWindowResize());
+      }
+      
+      animate() {
+        requestAnimationFrame(() => this.animate());
+        
+        this.mesh.rotation.x += 0.003;
+        this.mesh.rotation.y += 0.005;
+        
+        this.renderer.render(this.scene, this.camera);
+      }
+      
+      onWindowResize() {
+        this.camera.aspect = window.innerWidth / window.innerHeight;
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+      }
+    }
+    
+    // Statistics animation
+    function animateStats() {
+      const stats = document.querySelectorAll('.stat-number');
+      stats.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-target'));
+        const duration = 2000;
+        const increment = target / (duration / 16);
+        let current = 0;
+        
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          stat.textContent = Math.floor(current);
+        }, 16);
+      });
+    }
+    
+    // Initialization
+    document.addEventListener('DOMContentLoaded', () => {
+      new NeuralBackground();
+      // new Main3DScene(); // 3D sphere disabled for test
+      
+      // Statistics animation on scroll
+      ScrollTrigger.create({
+        trigger: '.automation-stats',
+        start: 'top 80%',
+        onEnter: animateStats
+      });
+    });
+  </script>
+
 </body>
 
 </html>

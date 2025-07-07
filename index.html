@@ -10,94 +10,186 @@
   <link rel="icon" sizes="16x16" href="image/OKLM icon.png" type="image/png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#0a0a0f">
   <meta name="description" content="OKLM - Assistant Vocal IA Ultra-Réaliste, disponible 24/7, avec prise de rendez-vous et réponses personnalisées.">
   <meta name="keywords" content="assistant vocal, IA, ultra-réaliste, prise de rendez-vous, réponses personnalisées, service client">
   <meta name="author" content="OKLM Team">
   <!-- Font Awesome pour les icônes professionnelles -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Three.js pour les animations 3D -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- GSAP pour les animations avancées -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
 <body>
-  <!-- Navbar sticky -->
-  <nav class="navbar navbar-sticky">
-    <div class="container">
-      <img src="image/OKLM.png" alt="Logo OKLM" class="logo">
-      <button class="menu-toggle" aria-label="Ouvrir le menu">
-        <i class="fas fa-bars"></i>
+  <!-- Background animé avec neurones technologiques -->
+  <div id="neuralBackground" class="neural-bg"></div>
+  
+  <!-- Canvas 3D principal -->
+  <canvas id="mainCanvas" class="main-canvas"></canvas>
+
+  <!-- Navbar minimaliste -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <img src="image/OKLM.png" alt="Logo OKLM" class="logo desktop-logo">
+      <img src="image/OKLM.png" alt="Logo OKLM" class="logo mobile-logo">
+      <button class="menu-toggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
-      <ul class="nav-menu">
-        <li><a href="#features"><i class="fas fa-star"></i> Fonctions</a></li>
-        <li><a href="#other-services"><i class="fas fa-cogs"></i> Services</a></li>
-        <li><a href="#demo"><i class="fas fa-play"></i> Testez</a></li>
-        <li><a href="#advantages"><i class="fas fa-trophy"></i> Avantages</a></li>
-        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-        <li><a href="oklmEn.html" class="lang-switch" aria-label="Switch to English">EN</a></li>
-        <li class="theme-toggle">
-          <label class="switch">
-            <input type="checkbox" id="darkModeToggle" class="input__check">
-            <span class="slider"></span>
-          </label>
-        </li>
-      </ul>
+      <div class="nav-menu">
+        <a href="#features" class="nav-link">
+          <i class="fas fa-star"></i>
+          <span class="desktop-text">Fonctionnalités</span>
+          <span class="mobile-text">Fonct.</span>
+        </a>
+        <a href="#automation" class="nav-link">
+          <i class="fas fa-cogs"></i>
+          <span class="desktop-text">Automatisation</span>
+          <span class="mobile-text">Auto</span>
+        </a>
+        <a href="#advantages" class="nav-link">
+          <i class="fas fa-trophy"></i>
+          <span class="desktop-text">Avantages</span>
+          <span class="mobile-text">Avant.</span>
+        </a>
+        <a href="#contact" class="nav-link">
+          <i class="fas fa-envelope"></i>
+          <span class="desktop-text">Contact</span>
+          <span class="mobile-text">Contact</span>
+        </a>
+        <a href="#demo" class="nav-link">
+          <i class="fas fa-phone"></i>
+          <span class="desktop-text">Testez l'IA</span>
+          <span class="mobile-text">Test</span>
+        </a>
+        <a href="oklmEn.html" class="nav-link nav-lang" style="margin-left:12px;">
+          <span>EN</span>
+        </a>
+      </div>
     </div>
   </nav>
 
-  <!-- Hero section -->
-  <section class="hero gradient-bg">
+  <!-- Hero Section -->
+  <section class="hero">
     <div class="hero-content">
-      <h1 class="text-hero animate-fade-in">Assistant Vocal IA Ultra‑Réaliste</h1>
-      <p class="hero-sub animate-fade-in">Disponible 24/7, voix naturelle, prise de rendez-vous, réponses personnalisées.</p>
-      <a href="#demo" class="btn-primary animate-fade-in">
-        <i class="fas fa-headset"></i> Testez en direct
+      <h1 class="hero-title">
+        <span class="desktop-text">Assistant Vocal IA Ultra‑Réaliste</span>
+        <span class="mobile-text">Assistant Vocal IA Ultra‑Réaliste</span>
+      </h1>
+      <p class="hero-subtitle">
+        <span class="desktop-text">Disponible 24/7, voix naturelle, prise de rendez-vous, réponses personnalisées.</span>
+        <span class="mobile-text">Disponible 24/7, voix naturelle, prise de rendez-vous, réponses personnalisées.</span>
+      </p>
+      <a href="#demo" class="hero-cta">
+        <i class="fas fa-headset"></i>
+        <span class="desktop-text">Testez en direct</span>
+        <span class="mobile-text">Testez</span>
       </a>
+    </div>
+    <!-- Mini-neurones 3D en arrière-plan -->
+    <div id="heroNeurons" class="hero-neurons"></div>
+  </section>
+
+  <!-- Section Démo Appel -->
+  <section class="demo-section" id="demo">
+    <div class="section-container">
+      <h2 class="section-title">
+        Testez l'Assistant <span class="title-accent">OKLM</span>
+      </h2>
+      
+      <div class="demo-interface">
+        <div class="demo-visual">
+          <div class="voice-orb" id="voiceOrb">
+            <div class="orb-core">
+              <img src="image/OKLM.png" alt="OKLM" class="orb-logo">
+            </div>
+            <div class="orb-rings">
+              <div class="ring ring-1"></div>
+              <div class="ring ring-2"></div>
+              <div class="ring ring-3"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="demo-controls">
+          <p class="demo-instruction">
+            <i class="fas fa-microphone"></i>
+            <span class="desktop-text">Posez-moi des questions sur nos services</span>
+            <span class="mobile-text">Posez-moi des questions sur nos services</span>
+          </p>
+          
+          <div class="demo-buttons">
+            <button id="callButton" class="btn-call">
+              <i class="fas fa-phone"></i>
+              <span class="desktop-text">Appeler l'assistant</span>
+              <span class="mobile-text">Appeler</span>
+            </button>
+            <button id="hangupButton" class="btn-hangup" disabled>
+              <i class="fas fa-phone-slash"></i>
+              <span class="desktop-text">Raccrocher</span>
+              <span class="mobile-text">Stop</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Features section -->
-  <section class="features-section section" id="features">
-    <div class="container">
-      <h2 class="section-title animate-fade-in">
-        <i class="fas fa-star"></i> Fonctionnalités Clés
+  <!-- Section Fonctionnalités -->
+  <section class="features-section" id="features">
+    <div class="section-container">
+      <h2 class="section-title">
+        <span class="desktop-text">Fonctionnalités <span class="title-accent">Clés</span></span>
+        <span class="mobile-text">Fonctionnalités <span class="title-accent">Clés</span></span>
       </h2>
-      <div class="features">
-        <div class="card animate-slide-up">
-          <div class="card-icon">
+      
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">
             <i class="fas fa-phone-alt"></i>
           </div>
           <h3>Répond au téléphone</h3>
           <p>Disponible 24 h/24, 7 j/7, en français québécois & anglais.</p>
         </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
+        
+        <div class="feature-item">
+          <div class="feature-icon">
             <i class="fas fa-calendar-alt"></i>
           </div>
           <h3>Prise de rendez‑vous</h3>
           <p>Gestion automatique d'agenda, rappels, confirmation.</p>
         </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
+        
+        <div class="feature-item">
+          <div class="feature-icon">
             <i class="fas fa-comments"></i>
           </div>
           <h3>Réponses personnalisées</h3>
           <p>Base de connaissances, adaptation à chaque client.</p>
         </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
+        
+        <div class="feature-item">
+          <div class="feature-icon">
             <i class="fas fa-microphone"></i>
           </div>
           <h3>Voix personnalisable</h3>
           <p>Choix de voix, tonalités, accents pour s'aligner à votre marque.</p>
         </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
+        
+        <div class="feature-item">
+          <div class="feature-icon">
             <i class="fas fa-chart-line"></i>
           </div>
           <h3>Optimisation des coûts</h3>
           <p>Réduit le besoin en personnel, économise des heures.</p>
         </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
+        
+        <div class="feature-item">
+          <div class="feature-icon">
             <i class="fas fa-rocket"></i>
           </div>
           <h3>En service continu</h3>
@@ -107,50 +199,126 @@
     </div>
   </section>
 
-  <!-- Autres services section -->
-  <section class="features-section section" id="other-services">
-    <div class="container">
-      <h2 class="section-title animate-fade-in">
-        <i class="fas fa-cogs"></i> Autres services
+  <!-- Section Automatisation -->
+  <section class="automation-section" id="automation">
+    <div class="section-container">
+      <h2 class="section-title">
+        Automatisation <span class="title-accent">Intelligente</span>
       </h2>
-      <div class="features">
-        <div class="card animate-slide-up">
-          <div class="card-icon">
+      
+      <div class="automation-flow">
+        <div class="flow-step">
+          <div class="step-visual">
+            <i class="fas fa-phone"></i>
+          </div>
+          <h3>Appel Entrant</h3>
+          <p>OKLM répond instantanément</p>
+        </div>
+        
+        <div class="flow-connector">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+        
+        <div class="flow-step">
+          <div class="step-visual">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3>Analyse IA</h3>
+          <p>Compréhension du besoin</p>
+        </div>
+        
+        <div class="flow-connector">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+        
+        <div class="flow-step">
+          <div class="step-visual">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <h3>Action Automatique</h3>
+          <p>Rendez-vous, réponse, suivi</p>
+        </div>
+        
+        <div class="flow-connector">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+        
+        <div class="flow-step">
+          <div class="step-visual">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Résultat</h3>
+          <p>Client satisfait, temps économisé</p>
+        </div>
+      </div>
+      
+      <div class="automation-stats">
+        <div class="stat-item">
+          <div class="stat-number" data-target="99">0</div>
+          <div class="stat-label">% de satisfaction</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="40">0</div>
+          <div class="stat-label">heures économisées/mois</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="30">0</div>
+          <div class="stat-label">% de coûts réduits</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Services -->
+  <section class="services-section">
+    <div class="section-container">
+      <h2 class="section-title">
+        Autres <span class="title-accent">Services</span>
+      </h2>
+      
+      <div class="services-grid">
+        <div class="service-item">
+          <div class="service-icon">
             <i class="fas fa-sms"></i>
           </div>
           <h3>Assistant par texto</h3>
           <p>Automatisez la gestion de vos SMS clients et notifications.</p>
         </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
+        
+        <div class="service-item">
+          <div class="service-icon">
             <i class="fas fa-envelope"></i>
           </div>
           <h3>Assistant par email</h3>
           <p>Réponses automatiques, tri, et gestion intelligente de vos emails.</p>
         </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
+        
+        <div class="service-item">
+          <div class="service-icon">
             <i class="fas fa-clock"></i>
           </div>
           <h3>Gestion des horaires employés</h3>
           <p>Planification, rappels et ajustements automatiques des horaires.</p>
         </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
+        
+        <div class="service-item">
+          <div class="service-icon">
             <i class="fas fa-globe"></i>
           </div>
           <h3>Assistant intégré à votre site</h3>
           <p>Ajoutez un assistant vocal ou chat sur votre site internet.</p>
         </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
+        
+        <div class="service-item">
+          <div class="service-icon">
             <i class="fas fa-ad"></i>
           </div>
           <h3>Création et publication de publicité</h3>
           <p>Création de publicités pour votre entreprise et pour vos produits.</p>
         </div>
-        <div class="card animate-slide-up">
-          <div class="card-icon">
+        
+        <div class="service-item">
+          <div class="service-icon">
             <i class="fas fa-lightbulb"></i>
           </div>
           <h3>Proposez votre automatisation</h3>
@@ -160,177 +328,162 @@
     </div>
   </section>
 
-  <!-- Demo section -->
-  <section class="demo-section section" id="demo">
-    <div class="container">
-      <h2 class="section-title animate-fade-in">
-        <i class="fas fa-play"></i> Testez en direct
+  <!-- Section Avantages -->
+  <section class="advantages-section" id="advantages">
+    <div class="section-container">
+      <h2 class="section-title">
+        Avantages <span class="title-accent">Concrets</span>
       </h2>
-      <div class="demo animate-fade-in">
-        <p class="cta-text">
-          <i class="fas fa-microphone"></i> Posez-moi des questions sur nos services
-        </p>
-        <div class="voice-circle" id="voiceCircle">
-          <img src="image/OKLM.png" alt="Logo OKLM" class="logo-demo">
-        </div>
-        <div class="demo-buttons">
-          <button id="callButton" class="btn-demo">
-            <i class="fas fa-phone"></i> Appeler l'assistant OKLM
-          </button>
-          <button id="hangupButton" class="btn-demo" disabled>
-            <i class="fas fa-phone-slash"></i> Raccrocher
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Advantages section -->
-  <section class="advantages-section section" id="advantages">
-    <div class="container">
-      <h2 class="section-title animate-fade-in">
-        <i class="fas fa-trophy"></i> Avantages
-      </h2>
+      
       <div class="advantages-grid">
-        <div class="advantage-card animate-slide-up">
-          <div class="advantage-icon"><i class="fas fa-phone-slash"></i></div>
+        <div class="advantage-item">
+          <div class="advantage-icon">
+            <i class="fas fa-phone-slash"></i>
+          </div>
           <h3>Aucun appel manqué</h3>
-          <span class="advantage-stat">-30% de clients potentiels perdus</span>
+          <div class="advantage-stat">-30% de clients potentiels perdus</div>
           <p>En moyenne, les entreprises perdent plus de 30% de clients potentiels à cause d'appels manqués. Avec OKLM, c'est IMPOSSIBLE de rater un appel. Disponible 24/7, sans attente, sans effort. Plus d'appels = plus de clients = plus d'argent.</p>
         </div>
-        <div class="advantage-card animate-slide-up">
-          <div class="advantage-icon"><i class="fas fa-piggy-bank"></i></div>
+        
+        <div class="advantage-item">
+          <div class="advantage-icon">
+            <i class="fas fa-piggy-bank"></i>
+          </div>
           <h3>Réduction des coûts</h3>
-          <span class="advantage-stat">40 % moins cher qu'un employé</span>
+          <div class="advantage-stat">40 % moins cher qu'un employé</div>
           <p>Réduisez vos dépenses. OKLM remplace le besoin qu'un employé réponde au téléphone pour une fraction du prix, sans congés, sans pause, sans erreur.</p>
         </div>
-        <div class="advantage-card animate-slide-up">
-          <div class="advantage-icon"><i class="fas fa-clock"></i></div>
+        
+        <div class="advantage-item">
+          <div class="advantage-icon">
+            <i class="fas fa-clock"></i>
+          </div>
           <h3>Gain de temps</h3>
-          <span class="advantage-stat">+40 heures sauvées chaque mois</span>
+          <div class="advantage-stat">+40 heures sauvées chaque mois</div>
           <p>En automatisant la gestion des appels, des horaires et des réponses clients, OKLM vous libère plus de 40 heures de travail par mois. Utilisez ce temps pour faire grandir votre entreprise.</p>
         </div>
-        <div class="advantage-card animate-slide-up">
-          <div class="advantage-icon"><i class="fas fa-robot"></i></div>
+        
+        <div class="advantage-item">
+          <div class="advantage-icon">
+            <i class="fas fa-robot"></i>
+          </div>
           <h3>Automatisation sur mesure</h3>
-          <span class="advantage-stat">100 % personnalisable</span>
+          <div class="advantage-stat">100 % personnalisable</div>
           <p>Vos besoins sont uniques. Même si vous ne voyez pas votre service ici, nous pouvons le créer pour vous. Email, SMS, API, système maison — si ça existe, on peut l'automatiser.</p>
         </div>
       </div>
-      <div class="advantages-cta animate-fade-in">
+      
+      <div class="advantages-cta">
         <strong>Tout besoin non listé peut être automatisé sur mesure</strong>
       </div>
     </div>
   </section>
 
-  <!-- Contact section -->
-  <section class="contact-section section" id="contact">
-    <div class="container">
-      <h2 class="section-title animate-fade-in">
-        <i class="fas fa-envelope"></i> Contactez‑nous
+  <!-- Section Contact -->
+  <section class="contact-section" id="contact">
+    <div class="section-container">
+      <h2 class="section-title">
+        Contactez‑<span class="title-accent">nous</span>
       </h2>
+      
       <form action="https://formspree.io/f/mnnvvgok" method="POST" class="contact-form">
         <div class="form-group">
           <label for="email">
-            <i class="fas fa-envelope"></i> Votre email:
+            <i class="fas fa-envelope"></i>
+            Votre email:
           </label>
           <input type="email" id="email" name="email" placeholder="exemple@gmail.com" required>
         </div>
+        
         <div class="form-group">
           <label for="message">
-            <i class="fas fa-comment"></i> Votre message:
+            <i class="fas fa-comment"></i>
+            Votre message:
           </label>
           <textarea id="message" name="message" rows="6" placeholder="Parlez-nous de vos besoins" required></textarea>
         </div>
+        
         <button type="submit" class="btn-submit">
-          <i class="fas fa-paper-plane"></i> Envoyer
+          <i class="fas fa-paper-plane"></i>
+          <span>Envoyer</span>
         </button>
       </form>
     </div>
   </section>
 
-  <div class="tagline">
-    <h1 class="section-title animate-fade-in">
-      Gagnez du temps. Prenez ça <strong class="highlight">OKLM</strong>
-    </h1>
-  </div>
+  <!-- Tagline -->
+  <section class="tagline-section">
+    <div class="section-container">
+      <h1 class="tagline-title">
+        Gagnez du temps. Prenez ça <strong class="highlight">OKLM</strong>
+      </h1>
+    </div>
+  </section>
 
-  <footer>
+  <!-- Footer -->
+  <footer class="footer">
     <div class="footer-content">
-      <p>&copy; 2025 OKLM • <a href="mailto:tcgreata@gmail.com"><i class="fas fa-envelope"></i> Bonin@assistantoklm.com</a></p>
+      <p>&copy; 2025 OKLM • <a href="mailto:tcgreata@gmail.com">
+        <i class="fas fa-envelope"></i> Bonin@assistantoklm.com
+      </a></p>
     </div>
   </footer>
 
   <!-- Feedback Modal -->
-  <div id="feedbackModal" class="modal hidden">
+  <div id="feedbackModal" class="feedback-modal">
     <div class="modal-content">
       <h3>Comment avez-vous trouvé l'appel ?</h3>
-      <div id="starRating" class="stars">
+      
+      <div class="star-rating" id="starRating">
         <span data-star="1">★</span>
         <span data-star="2">★</span>
         <span data-star="3">★</span>
         <span data-star="4">★</span>
         <span data-star="5">★</span>
       </div>
-      <form id="feedbackForm" class="hidden" method="POST" action="https://formspree.io/f/mnnvvgok">
+      
+      <form id="feedbackForm" class="feedback-form" method="POST" action="https://formspree.io/f/mnnvvgok">
         <input type="hidden" name="stars" id="starInput">
         <label for="comment">Donnez-nous votre avis :</label>
         <textarea name="comment" id="comment" rows="4" required placeholder="Votre commentaire..."></textarea>
         <button type="submit">Envoyer</button>
       </form>
-      <p id="errorMsg" class="error hidden">Veuillez ajouter un commentaire pour envoyer votre avis.</p>
+      
+      <p id="errorMsg" class="error-message">Veuillez ajouter un commentaire pour envoyer votre avis.</p>
     </div>
   </div>
 
+  <!-- Scripts -->
   <script>
-    // Menu hamburger mobile
+    // Initialisation GSAP
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Mode sombre permanent
+    document.body.classList.add('dark-mode');
+    
+    // Menu mobile
     const menuToggle = document.querySelector('.menu-toggle');
-    const navUl = document.querySelector('.navbar ul');
-
-    // Ouvre/ferme le menu en cliquant sur le hamburger
-    menuToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      navUl.classList.toggle('open');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('active');
     });
-
-    // Ferme le menu quand on clique sur un lien
-    document.querySelectorAll('.navbar ul a').forEach(link => {
+    
+    // Fermeture du menu au clic sur un lien
+    document.querySelectorAll('.nav-menu a').forEach(link => {
       link.addEventListener('click', () => {
-        navUl.classList.remove('open');
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('active');
       });
     });
-
-    // Ferme le menu si on clique à l'extérieur
-    document.addEventListener('click', (e) => {
-      if (navUl.classList.contains('open') &&
-          !navUl.contains(e.target) &&
-          !menuToggle.contains(e.target)) {
-        navUl.classList.remove('open');
-      }
-    });
-
-    // Dark/Light mode switch
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const body = document.body;
-    // Load preference
-    if (localStorage.getItem('oklm-theme') === 'dark') {
-      body.classList.add('dark-mode');
-      darkModeToggle.checked = true;
-    }
-    darkModeToggle.addEventListener('change', function () {
-      if (this.checked) {
-        body.classList.add('dark-mode');
-        localStorage.setItem('oklm-theme', 'dark');
-      } else {
-        body.classList.remove('dark-mode');
-        localStorage.setItem('oklm-theme', 'light');
-      }
-    });
   </script>
+  
   <script>
+    // Vapi Integration
     const callButton = document.getElementById("callButton");
     const hangupButton = document.getElementById("hangupButton");
-    const voiceCircle = document.getElementById("voiceCircle");
+    const voiceOrb = document.getElementById("voiceOrb");
 
     callButton.addEventListener("click", () => {
       if (!vapiInstance) return console.error("Widget Vapi non chargé");
@@ -338,7 +491,7 @@
       vapiInstance.start("12f7fe20-3241-4dc5-9de1-b980e7f6cb0d");
       callButton.disabled = true;
       hangupButton.disabled = false;
-      voiceCircle.classList.add("active");
+      voiceOrb.classList.add("active");
     });
 
     hangupButton.addEventListener("click", () => {
@@ -347,91 +500,68 @@
       vapiInstance.stop();
       callButton.disabled = false;
       hangupButton.disabled = true;
-      voiceCircle.classList.remove("active");
+      voiceOrb.classList.remove("active");
 
-      // Affiche le feedback modal
-      document.getElementById('feedbackModal').classList.remove('hidden');
+      // Affiche automatiquement le feedback modal
+      setTimeout(() => {
+        document.getElementById('feedbackModal').classList.add('show');
+      }, 500);
     });
 
-    // Fermeture du modal si clic en dehors ou touche Echap
-    document.addEventListener('click', function(e) {
-      const modal = document.getElementById('feedbackModal');
-      if (!modal.classList.contains('hidden')) {
-        if (e.target === modal) {
-          modal.classList.add('hidden');
-          resetFeedbackModal();
-        }
-      }
-    });
-    document.addEventListener('keydown', function(e) {
-      const modal = document.getElementById('feedbackModal');
-      if (!modal.classList.contains('hidden') && e.key === 'Escape') {
-        modal.classList.add('hidden');
-        resetFeedbackModal();
-      }
-    });
-    // Ajoute un bouton de fermeture (croix)
-    (function addCloseBtn() {
-      const modal = document.getElementById('feedbackModal');
-      if (!modal.querySelector('.close-modal')) {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'close-modal';
-        btn.innerHTML = '&times;';
-        btn.style.position = 'absolute';
-        btn.style.top = '12px';
-        btn.style.right = '18px';
-        btn.style.background = 'none';
-        btn.style.border = 'none';
-        btn.style.color = 'var(--color-primary)';
-        btn.style.fontSize = '2rem';
-        btn.style.cursor = 'pointer';
-        btn.style.zIndex = '10';
-        btn.setAttribute('aria-label', 'Fermer');
-        btn.onclick = function() {
-          modal.classList.add('hidden');
-          resetFeedbackModal();
-        };
-        modal.querySelector('.modal-content').appendChild(btn);
-      }
-    })();
-    // Reset feedback modal
-    function resetFeedbackModal() {
-      document.getElementById('starInput').value = '';
-      document.getElementById('feedbackForm').classList.add('hidden');
-      document.getElementById('errorMsg').classList.add('hidden');
-      document.querySelectorAll('#starRating span').forEach(s => s.classList.remove('selected'));
-      document.getElementById('comment').value = '';
-    }
-
-    // Star rating logic
+    // Feedback Modal
+    const feedbackModal = document.getElementById('feedbackModal');
     const stars = document.querySelectorAll('#starRating span');
     const form = document.getElementById('feedbackForm');
     const starInput = document.getElementById('starInput');
     const errorMsg = document.getElementById('errorMsg');
 
+    // Fermeture du modal
+    feedbackModal.addEventListener('click', (e) => {
+      if (e.target === feedbackModal) {
+        feedbackModal.classList.remove('show');
+        resetFeedbackModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && feedbackModal.classList.contains('show')) {
+        feedbackModal.classList.remove('show');
+        resetFeedbackModal();
+      }
+    });
+
+    // Star rating
     stars.forEach(star => {
       star.addEventListener('click', () => {
         const rating = star.dataset.star;
         starInput.value = rating;
         stars.forEach(s => s.classList.remove('selected'));
         for (let i = 0; i < rating; i++) stars[i].classList.add('selected');
-        form.classList.remove('hidden');
-        errorMsg.classList.add('hidden');
+        form.classList.add('show');
+        errorMsg.classList.remove('show');
       });
     });
 
-    // Blocage si pas de commentaire
+    // Form validation
     form.addEventListener('submit', (e) => {
       const comment = document.getElementById('comment').value.trim();
       if (!comment) {
         e.preventDefault();
-        errorMsg.classList.remove('hidden');
+        errorMsg.classList.add('show');
       }
     });
+
+    function resetFeedbackModal() {
+      starInput.value = '';
+      form.classList.remove('show');
+      errorMsg.classList.remove('show');
+      stars.forEach(s => s.classList.remove('selected'));
+      document.getElementById('comment').value = '';
+    }
   </script>
 
   <script>
+    // Vapi SDK
     var vapiInstance = null;
     const assistant = "12f7fe20-3241-4dc5-9de1-b980e7f6cb0d";
     const apiKey = "f67d37f8-109f-4900-85ed-9aaf231a7135";
@@ -446,14 +576,246 @@
       s.parentNode.insertBefore(g, s);
       g.onload = function () {
         vapiInstance = window.vapiSDK.run({
-          apiKey: apiKey, // obligatoire
-          assistant: assistant, // obligatoire
-          config: buttonConfig // optionnel : styles et textes
+          apiKey: apiKey,
+          assistant: assistant,
+          config: buttonConfig
         });
       };
     })(document, "script");
   </script>
   
+  <!-- Scripts pour les animations avancées -->
+  <script>
+    // Animation des neurones technologiques
+    class NeuralBackground {
+      constructor() {
+        this.container = document.getElementById('neuralBackground');
+        this.canvas = document.createElement('canvas');
+        this.ctx = this.canvas.getContext('2d');
+        this.particles = [];
+        this.connections = [];
+        this.sections = [];
+        
+        this.container.appendChild(this.canvas);
+        this.init();
+        this.animate();
+      }
+      
+      init() {
+        this.resize();
+        window.addEventListener('resize', () => this.resize());
+        
+        // Créer les particules
+        for (let i = 0; i < 120; i++) { // Augmente le nombre d'étoiles rouges
+          this.particles.push({
+            x: Math.random() * this.canvas.width,
+            y: Math.random() * this.canvas.height,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+            size: Math.random() * 1.2 + 0.5, // Plus petites étoiles
+            section: Math.floor(Math.random() * 6)
+          });
+        }
+        
+        // Créer les connexions (encore plus de lignes)
+        this.connections = [];
+        for (let i = 0; i < this.particles.length; i++) {
+          for (let j = i + 1; j < this.particles.length; j++) {
+            const distance = Math.hypot(
+              this.particles[i].x - this.particles[j].x,
+              this.particles[i].y - this.particles[j].y
+            );
+            if (distance < 60 && Math.random() < 0.25) { // 25% de chance, distance max 60px
+              this.connections.push({
+                from: i,
+                to: j,
+                distance: distance
+              });
+            }
+          }
+        }
+        // S'assurer qu'il y a toujours au moins 8 lignes
+        while (this.connections.length < 8) {
+          const i = Math.floor(Math.random() * this.particles.length);
+          let j = Math.floor(Math.random() * this.particles.length);
+          while (j === i) j = Math.floor(Math.random() * this.particles.length);
+          const distance = Math.hypot(
+            this.particles[i].x - this.particles[j].x,
+            this.particles[i].y - this.particles[j].y
+          );
+          if (distance < 60) {
+            this.connections.push({
+              from: i,
+              to: j,
+              distance: distance
+            });
+          }
+        }
+        
+        // Détecter les sections
+        this.detectSections();
+      }
+      
+      resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+      }
+      
+      detectSections() {
+        const sections = document.querySelectorAll('section');
+        sections.forEach((section, index) => {
+          this.sections.push({
+            element: section,
+            index: index,
+            bounds: section.getBoundingClientRect()
+          });
+        });
+      }
+      
+      animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        // Mettre à jour les particules
+        this.particles.forEach(particle => {
+          particle.x += particle.vx;
+          particle.y += particle.vy;
+          
+          // Rebondir aux bords
+          if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
+          if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
+        });
+        
+        // Dessiner les connexions
+        this.ctx.strokeStyle = 'rgba(192, 192, 192, 0.1)';
+        this.ctx.lineWidth = 1;
+        
+        this.connections.forEach(connection => {
+          const from = this.particles[connection.from];
+          const to = this.particles[connection.to];
+          
+          this.ctx.beginPath();
+          this.ctx.moveTo(from.x, from.y);
+          this.ctx.lineTo(to.x, to.y);
+          this.ctx.stroke();
+        });
+        
+        // Dessiner les particules
+        this.particles.forEach(particle => {
+          this.ctx.fillStyle = 'rgba(255, 44, 44, 0.6)';
+          this.ctx.beginPath();
+          this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+          this.ctx.fill();
+        });
+        
+        // Illuminer les particules de la section active
+        this.highlightActiveSection();
+        
+        requestAnimationFrame(() => this.animate());
+      }
+      
+      highlightActiveSection() {
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+        
+        this.sections.forEach(section => {
+          const rect = section.element.getBoundingClientRect();
+          const isVisible = rect.top < windowHeight && rect.bottom > 0;
+          
+          if (isVisible) {
+            this.particles.forEach(particle => {
+              if (particle.section === section.index) {
+                particle.size = Math.random() * 3 + 2;
+                this.ctx.fillStyle = 'rgba(255, 44, 44, 0.8)';
+              }
+            });
+          }
+        });
+      }
+    }
+    
+    // Animation 3D principale
+    class Main3DScene {
+      constructor() {
+        this.canvas = document.getElementById('mainCanvas');
+        this.scene = new THREE.Scene();
+        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, alpha: true });
+        
+        this.init();
+        this.animate();
+      }
+      
+      init() {
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.setClearColor(0x000000, 0);
+        
+        // Créer l'icosaèdre chromé
+        const geometry = new THREE.IcosahedronGeometry(2, 1);
+        const material = new THREE.MeshBasicMaterial({ 
+          color: 0xC0C0C0,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.3
+        });
+        
+        this.mesh = new THREE.Mesh(geometry, material);
+        this.scene.add(this.mesh);
+        
+        this.camera.position.z = 8;
+        
+        // Responsive
+        window.addEventListener('resize', () => this.onWindowResize());
+      }
+      
+      animate() {
+        requestAnimationFrame(() => this.animate());
+        
+        this.mesh.rotation.x += 0.003;
+        this.mesh.rotation.y += 0.005;
+        
+        this.renderer.render(this.scene, this.camera);
+      }
+      
+      onWindowResize() {
+        this.camera.aspect = window.innerWidth / window.innerHeight;
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+      }
+    }
+    
+    // Animation des statistiques
+    function animateStats() {
+      const stats = document.querySelectorAll('.stat-number');
+      stats.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-target'));
+        const duration = 2000;
+        const increment = target / (duration / 16);
+        let current = 0;
+        
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          stat.textContent = Math.floor(current);
+        }, 16);
+      });
+    }
+    
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', () => {
+      new NeuralBackground();
+      // new Main3DScene(); // Sphère 3D désactivée pour test
+      
+      // Animation des stats au scroll
+      ScrollTrigger.create({
+        trigger: '.automation-stats',
+        start: 'top 80%',
+        onEnter: animateStats
+      });
+    });
+  </script>
 
 </body>
 
