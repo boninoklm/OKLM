@@ -605,19 +605,19 @@
         this.resize();
         window.addEventListener('resize', () => this.resize());
         
-        // Créer les particules
-        for (let i = 0; i < 120; i++) { // Augmente le nombre d'étoiles rouges
+        // Create particles
+        for (let i = 0; i < 120; i++) {
           this.particles.push({
             x: Math.random() * this.canvas.width,
             y: Math.random() * this.canvas.height,
             vx: (Math.random() - 0.5) * 0.5,
             vy: (Math.random() - 0.5) * 0.5,
-            size: Math.random() * 1.2 + 0.5, // Plus petites étoiles
+            size: Math.random() * 1.2 + 0.5,
             section: Math.floor(Math.random() * 6)
           });
         }
         
-        // Créer les connexions (encore plus de lignes)
+        // Create connections (fewer lines)
         this.connections = [];
         for (let i = 0; i < this.particles.length; i++) {
           for (let j = i + 1; j < this.particles.length; j++) {
@@ -625,7 +625,7 @@
               this.particles[i].x - this.particles[j].x,
               this.particles[i].y - this.particles[j].y
             );
-            if (distance < 60 && Math.random() < 0.25) { // 25% de chance, distance max 60px
+            if (distance < 50 && Math.random() < 0.15) { // Reduced probability to 15%
               this.connections.push({
                 from: i,
                 to: j,
@@ -634,8 +634,8 @@
             }
           }
         }
-        // S'assurer qu'il y a toujours au moins 8 lignes
-        while (this.connections.length < 8) {
+        // Ensure there are always at least 5 lines (reduced from 8)
+        while (this.connections.length < 5) {
           const i = Math.floor(Math.random() * this.particles.length);
           let j = Math.floor(Math.random() * this.particles.length);
           while (j === i) j = Math.floor(Math.random() * this.particles.length);
@@ -652,7 +652,7 @@
           }
         }
         
-        // Détecter les sections
+        // Detect sections
         this.detectSections();
       }
       
@@ -675,14 +675,16 @@
       animate() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
-        // Mettre à jour les particules
+        // Update particles with extended boundaries
         this.particles.forEach(particle => {
           particle.x += particle.vx;
           particle.y += particle.vy;
           
-          // Rebondir aux bords
-          if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
-          if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
+          // Extended boundaries (50px beyond screen edges)
+          if (particle.x < -50) particle.x = this.canvas.width + 50;
+          if (particle.x > this.canvas.width + 50) particle.x = -50;
+          if (particle.y < -50) particle.y = this.canvas.height + 50;
+          if (particle.y > this.canvas.height + 50) particle.y = -50;
         });
         
         // Dessiner les connexions
